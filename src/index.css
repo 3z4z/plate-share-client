@@ -1,2 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+a.btn,
+h1 *,
+h2 *,
+h3 *,
+h4 *,
+h5 *,
+h6 *,
+a.btn *,
+button * {
+  font-family: "Inter", sans-serif;
+}
+
+h1 {
+  @apply font-extrabold;
+}
+h2,
+h3 {
+  @apply font-bold;
+}
+
+h4,
+h5,
+h6,
+button,
+a.btn {
+  @apply font-semibold;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
+}
+
 @import "tailwindcss";
 @plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "mytheme";
+  default: true; /* set as default */
+  prefersdark: false; /* set as default dark mode (prefers-color-scheme:dark) */
+  color-scheme: light; /* color of browser-provided UI */
+
+  --color-base-100: #fdf9f7;
+  --color-base-200: #ede4d8;
+  --color-base-300: #ebdecc;
+  --color-primary: #fc991e;
+  --color-base-content: #111433;
+  --color-primary-content: #0f1126;
+  --color-secondary: #20929e;
+  --color-secondary-content: #fffcf7;
+  --color-accent: #111433;
+  --color-accent-content: #f4f4f4;
+  --color-neutral: #13141c;
+  --color-neutral-content: #f5f5f5;
+
+  --color-info: #17a2b8;
+  --color-info-content: #f4f4f4;
+  --color-success: #28a745;
+  --color-success-content: #f4f4f4;
+  --color-warning: #ffc107;
+  --color-warning-content: #121213;
+  --color-error: #dc3545;
+  --color-error-content: #f5f5f5;
+}
+@theme {
+}

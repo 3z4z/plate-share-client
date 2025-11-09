@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router";
-import HomeLayout from "./layouts/HomeLayout";
-import HomePage from "./pages/Home";
-import ErrorPage from "./pages/Error";
-
+import HomeLayout from "../layouts/HomeLayout";
+import HomePage from "../pages/Home";
+import ErrorPage from "../pages/Error";
+import AvailableFoodsPage from "../pages/AvailableFoods";
 export const router = createBrowserRouter([
   {
     path: "",
@@ -12,6 +12,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: HomePage,
+      },
+      {
+        path: "foods",
+        Component: AvailableFoodsPage,
       },
     ],
   },

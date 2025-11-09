@@ -1,12 +1,14 @@
 import { Outlet } from "react-router";
-import FooterComponent from "../components/Footer";
-import HeaderComponent from "../components/Header";
+import FooterComponent from "../components/common/Footer";
+import HeaderComponent from "../components/common/Header";
 
 export default function HomeLayout() {
   return (
-    <div>
+    <div className="flex flex-col h-dvh">
       <HeaderComponent />
-      <Outlet />
+      <div className="flex-1">
+        <Outlet />
+      </div>
       <FooterComponent />
     </div>
   );
