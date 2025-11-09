@@ -5,7 +5,7 @@ import FoodCard from "../common/FoodCard";
 
 import { GiKnifeFork } from "react-icons/gi";
 import { Link } from "react-router";
-import CardSkeletonLoader from "../loaders/cardSkeletonLoader";
+import CardSkeletonLoader from "../loaders/CardSkeletonLoader";
 
 export default function FeaturedFoodsComponent() {
   const { featuredFoods, setFeaturedFoods, isFoodsLoading } = useFoodsStore();
