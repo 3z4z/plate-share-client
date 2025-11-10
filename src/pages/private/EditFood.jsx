@@ -1,0 +1,97 @@
+import { useNavigate, useParams } from "react-router";
+import CommonTitleComponent from "../../components/common/CommonTitle";
+import { useFoodsStore } from "../../stores/useFoodsStore";
+import { useEffect } from "react";
+import FoodForm from "../../components/forms/FoodForm";
+import { useAuthStore } from "../../stores/useAuthStore";
+import useAxios from "../../hooks/useAxios";
+import toast from "react-hot-toast";
+
+export default function EditFoodPage() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { user } = useAuthStore();
+  const { food, setFood, updateFood } = useFoodsStore();
+  const axios = useAxios();
+  useEffect(() => {
+    setFood(id);
+  }, [setFood, id]);
+  useEffect(() => {
+    if (!food) return;
+    // if (user && food && user.email !== food.donor_email) {
+    //   navigate("/");
+    // }
+  }, [food, navigate, user]);
+  const {
+    description,
+    expire_date,
+    food_status,
+    donor_name,
+    donor_image,
+    donor_email,
+    image,
+    name,
+    pickup_location,
+    quantity,
+  } = food;
+  const oldFood = {
+    // Do not change this order!
+    name,
+    image,
+    quantity,
+    pickup_location,
+    expire_date,
+    description,
+    donor_name,
+    donor_email,
+    donor_image,
+    food_status,
+  };
+  const isUserSame = food.donor_email === user.email;
+  const handleFoodEdit = (data) => {
+    console.log("Trying to edit:", food.name);
+    try {
+      if (food) {
+        const payload = {
+          ...data,
+          expire_date: data.expire_date ? data.expire_date.toISOString() : null,
+        };
+        if (JSON.stringify(payload) !== JSON.stringify(oldFood)) {
+          const result = {
+            ...payload,
+            edited_at: new Date().toISOString(),
+            donor_name: user.displayName,
+            donor_email: user.email,
+            donor_image: user.photoURL,
+          };
+          axios.patch(`/foods/${food._id}`, result);
+          toast.success("Edited Successfully");
+          updateFood(result);
+        } else {
+          toast.error("Nothing to edit!");
+        }
+      }
+    } catch (err) {
+      toast.error(err.response.data);
+    }
+  };
+  return (
+    <section>
+      <CommonTitleComponent
+        title={"Edit Your Meal"}
+        subtitle={
+          "It only takes a few steps to share your meal with someone in need."
+        }
+        margins={"my-10"}
+      />
+      {food && (
+        <FoodForm
+          food={food}
+          isUserSame={isUserSame}
+          onSubmit={handleFoodEdit}
+          user={user}
+        />
+      )}
+    </section>
+  );
+}

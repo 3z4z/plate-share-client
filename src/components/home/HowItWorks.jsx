@@ -31,6 +31,7 @@ export default function HowItWorksComponent() {
         subtitle={
           "Learn how PlateShare turns your extra meals into meaningful moments of giving."
         }
+        margins={"mt-28 mb-18"}
       />
       <div className="grid lg:grid-cols-3 lg:max-w-full max-w-lg mx-auto">
         {howItWorks.map((step, index) => (

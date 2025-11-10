@@ -12,11 +12,11 @@ import { auth } from "../../firebase.config";
 import { axiosInstance } from "../utils/axiosInstance";
 
 const provider = new GoogleAuthProvider();
-export const useAUthStore = create((set) => ({
+export const useAuthStore = create((set) => ({
   user: null,
-  isSigningIn: true,
+  isSigningIn: false,
   error: null,
-  isGoogleSigningIn: true,
+  isGoogleSigningIn: false,
   isAuthLoading: true,
   signInWithGoogle: async () => {
     try {
@@ -25,14 +25,14 @@ export const useAUthStore = create((set) => ({
       set({ user });
       return { user };
     } catch (err) {
-      console.log(err);
       set({ error: err.message });
+      return { error: err.message };
     } finally {
       set({ isGoogleSigningIn: false });
     }
   },
 
-  register: async (fullName, email, password, userImage) => {
+  signUp: async (fullName, email, password, userImage) => {
     try {
       const result = await createUserWithEmailAndPassword(
         auth,
@@ -52,8 +52,10 @@ export const useAUthStore = create((set) => ({
         userImage: user.photoURL,
       };
       await axiosInstance.post("/users", newUser);
+      return { user };
     } catch (err) {
       set({ error: err.message });
+      return { error: err.message };
     } finally {
       set({ isSigningIn: false });
     }
@@ -68,6 +70,7 @@ export const useAUthStore = create((set) => ({
     } catch (err) {
       console.log(err);
       set({ error: err.message });
+      return { error: err.message };
     } finally {
       set({ isSigningIn: false });
     }
@@ -76,6 +79,7 @@ export const useAUthStore = create((set) => ({
   signOut: async () => {
     try {
       await signOut(auth);
+      set({ isAuthLoading: false, isSigningIn: false });
     } catch (err) {
       console.log(err);
       set({ error: err.message });
@@ -85,12 +89,12 @@ export const useAUthStore = create((set) => ({
   initAuthListener: () => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (!currentUser) {
-        set({ user: currentUser });
+        set({ user: null, isAuthLoading: false, isSigningIn: false });
+        return;
       } else {
-        set({ user: null });
+        set({ user: currentUser, isAuthLoading: false, isSigningIn: false });
       }
-      set({ isAuthLoading: false, isSigningIn: false });
-      return () => unsubscribe;
     });
+    return unsubscribe;
   },
 }));
