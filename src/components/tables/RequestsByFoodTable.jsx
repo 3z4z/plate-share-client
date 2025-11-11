@@ -58,11 +58,8 @@ export default function RequestsByFoodTable({ foodId }) {
                       await axios.patch(`/requests/${requestId}`, {
                         requestStatus: action,
                       });
+                      setFood(foodId);
                       manageARequest(requestId, action);
-                      console.log(
-                        "accepted request for foodId:",
-                        requesterName
-                      );
                       toast.success(`Accepted ${requesterName}'s request!`);
                     } catch (error) {
                       toast.error(error.response.data);
@@ -74,8 +71,8 @@ export default function RequestsByFoodTable({ foodId }) {
                       await axios.patch(`/requests/${requestId}`, {
                         requestStatus: action,
                       });
+                      setFood(foodId);
                       manageARequest(requestId, action);
-                      console.log(requesterName, "Rejected");
                       toast.error(
                         `Rejected ${requesterName}'s request!`,
                         hotToastInfoConfig

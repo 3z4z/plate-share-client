@@ -48,25 +48,38 @@ export default function MyRequestsTable({ myRequests }) {
                               src={
                                 isFoodsLoading
                                   ? "https://picsum.photos/200/300.jpg"
-                                  : requestedFood.image
+                                  : requestedFood?.image ||
+                                    "https://via.placeholder.com/50"
                               }
                               alt=""
                               className="w-full h-full object-cover"
                             />
                           </figure>
                         </div>
-                        <span>{isFoodsLoading || requestedFood.name}</span>
+                        <span>
+                          {isFoodsLoading
+                            ? "Loading..."
+                            : requestedFood?.name || "Unknown"}
+                        </span>
                       </div>
                     </td>
                     <td>
-                      <p>{isFoodsLoading || requestedFood.donor_name}</p>
+                      <p>
+                        {isFoodsLoading
+                          ? "Loading..."
+                          : requestedFood?.donor_name || "Unknown"}
+                      </p>
                       <p className="text-xs">
                         <span className="me-1">Pickup:</span>
-                        {isFoodsLoading || requestedFood.pickup_location}
+                        {isFoodsLoading
+                          ? "Loading..."
+                          : requestedFood?.pickup_location || "Unknown"}
                       </p>
                     </td>
                     <td className="text-center">
-                      {isFoodsLoading || requestedFood.quantity}
+                      {isFoodsLoading
+                        ? "Loading..."
+                        : requestedFood?.quantity || "Unknown"}
                     </td>
                     <td className="text-center">
                       <div

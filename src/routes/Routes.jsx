@@ -28,6 +28,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "food/:id",
+        errorElement: <ErrorPage />,
         element: (
           <PrivateRoute>
             <FoodDetailsPage />
@@ -71,6 +72,7 @@ export const router = createBrowserRouter([
   {
     path: "auth",
     Component: AuthPage,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

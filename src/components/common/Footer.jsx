@@ -1,6 +1,7 @@
 import { container } from "../../utils/classNames";
 import BrandLogoComponent from "./BrandLogo";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import playStoreLogo from "../../assets/google-play.png";
 import appStoreLogo from "../../assets/app-store.png";
 
@@ -18,7 +19,7 @@ export default function FooterComponent() {
       path: "#",
       icon: <FaInstagram className="w-5 h-5" />,
     },
-    { title: "Twitter", path: "#", icon: <FaTwitter className="w-5 h-5" /> },
+    { title: "Twitter", path: "#", icon: <FaXTwitter className="w-5 h-5" /> },
   ];
   return (
     <footer className="mt-28 bg-base-300">

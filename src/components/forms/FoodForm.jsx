@@ -236,7 +236,7 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
         {errors.pickup_location && (
           <p className="text-error mt-0.5">{errors.pickup_location.message}</p>
         )}
-        <label className="font-medium mt-3">Additional Notes</label>
+        <label className="block font-medium mt-3">Additional Notes</label>
         <textarea
           placeholder="Add some description"
           rows={6}
