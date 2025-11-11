@@ -59,6 +59,8 @@ export default function RequestsByFoodTable({ foodId }) {
                         requestStatus: action,
                       });
                       setFood(foodId);
+                      setRequestsByFood(foodId);
+
                       manageARequest(requestId, action);
                       toast.success(`Accepted ${requesterName}'s request!`);
                     } catch (error) {
@@ -72,6 +74,7 @@ export default function RequestsByFoodTable({ foodId }) {
                         requestStatus: action,
                       });
                       setFood(foodId);
+                      setRequestsByFood(foodId);
                       manageARequest(requestId, action);
                       toast.error(
                         `Rejected ${requesterName}'s request!`,

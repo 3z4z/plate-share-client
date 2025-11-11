@@ -86,7 +86,9 @@ export default function MyRequestsTable({ myRequests }) {
                         className={`badge badge-sm ${
                           requestStatus === "Pending"
                             ? "badge-warning"
-                            : "badge-success"
+                            : requestStatus === "Accepted"
+                            ? "badge-success"
+                            : "badge-error"
                         }`}
                       >
                         {requestStatus}

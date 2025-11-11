@@ -80,7 +80,7 @@ export default function FoodDetailsPage() {
               </div>
               <p className="mt-10 mb-1">
                 <span>Total Available:</span>
-                <span className="ms-1 font-bold">{quantity}</span>
+                <span className="ms-1 font-bold">{quantity} Plates</span>
               </p>
               <p className="mb-10">
                 <span>Expire Date:</span>
