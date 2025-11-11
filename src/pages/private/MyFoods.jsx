@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useFoodsStore } from "../../stores/useFoodsStore";
 import { useAuthStore } from "../../stores/useAuthStore";
-import FoodsTableComponent from "../../components/common/FoodsTable";
+import FoodsTable from "../../components/tables/FoodsTable";
 
 export default function MyFoodsPage() {
   const { user } = useAuthStore();
@@ -16,12 +16,6 @@ export default function MyFoodsPage() {
     }
   }, [setMyFoods, user]);
   return (
-    <>
-      {isFoodsLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <FoodsTableComponent foods={myFoods} />
-      )}
-    </>
+    <>{isFoodsLoading ? <p>Loading...</p> : <FoodsTable foods={myFoods} />}</>
   );
 }

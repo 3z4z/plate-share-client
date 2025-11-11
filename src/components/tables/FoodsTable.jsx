@@ -1,13 +1,11 @@
 import dayjs from "dayjs";
-import CommonTitleComponent from "./CommonTitle";
-import useAxios from "../../hooks/useAxios";
-import { useFoodsStore } from "../../stores/useFoodsStore";
-import toast from "react-hot-toast";
+import CommonTitleComponent from "../common/CommonTitle";
 import { Link } from "react-router";
+import { useState } from "react";
+import FoodDeleteConfirmModal from "../modals/FoodDeleteConfirmModal";
 
-export default function FoodsTableComponent({ foods }) {
-  const axios = useAxios();
-  const { deleteFood } = useFoodsStore();
+export default function FoodsTable({ foods }) {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   return (
     <div className="px-3 max-w-[1600px] mx-auto ">
       <CommonTitleComponent title={"My Shared Plates"} margins={"my-7"} />
@@ -24,7 +22,7 @@ export default function FoodsTableComponent({ foods }) {
               <th className="w-2/16">Created On</th>
               <th className="w-2/16 text-center">Quantity</th>
               <th className="w-2/16 text-center">Availability</th>
-              <th className="w-3/16 text-center">Acitons</th>
+              <th className="w-3/16 text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -38,27 +36,16 @@ export default function FoodsTableComponent({ foods }) {
                   quantity,
                   food_status,
                 } = food;
-                const handleFoodDelete = async () => {
-                  console.log("Trying to delete:", id);
-                  try {
-                    const res = await axios.delete(`/foods/${id}`);
-                    if (res.status === 200) {
-                      deleteFood(id);
-                      toast.success("Deleted your donation!");
-                    } else {
-                      toast.error("Something is wrong!");
-                    }
-                  } catch (err) {
-                    toast.error(err.response.data.message);
-                  }
+                const handleDeleteModalOpen = () => {
+                  setIsDeleteModalOpen(true);
                 };
                 return (
                   <tr key={index} className="odd:bg-base-100 *:py-1.5">
-                    <td className="font-bold ms-3">{index + 1}</td>
+                    <td className="font-bold ps-5">{index + 1}</td>
                     <td>
                       <div className="flex gap-3 items-center">
                         <div>
-                          <figure className="w-10 h-10 rounded-sm flex items-center justify-center border border-base-300 bg-gray-300">
+                          <figure className="w-10 h-10 rounded-sm flex items-center justify-center border border-base-300 bg-gray-300 overflow-hidden">
                             <img
                               src={image}
                               alt=""
@@ -97,11 +84,16 @@ export default function FoodsTableComponent({ foods }) {
                           Edit
                         </Link>
                         <button
-                          onClick={handleFoodDelete}
+                          onClick={handleDeleteModalOpen}
                           className="btn btn-error btn-soft btn-sm"
                         >
                           Delete
                         </button>
+                        <FoodDeleteConfirmModal
+                          setIsDeleteModalOpen={setIsDeleteModalOpen}
+                          isDeleteModalOpen={isDeleteModalOpen}
+                          id={id}
+                        />
                       </div>
                     </td>
                   </tr>

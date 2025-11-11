@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoutes";
 import AddFoodPage from "../pages/private/AddFood";
 import MyFoodsPage from "../pages/private/MyFoods";
 import EditFoodPage from "../pages/private/EditFood";
+import MyRequestsPage from "../pages/private/MyRequests";
 export const router = createBrowserRouter([
   {
     path: "",
@@ -46,6 +47,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyFoodsPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-requests",
+        element: (
+          <PrivateRoute>
+            <MyRequestsPage />
           </PrivateRoute>
         ),
       },

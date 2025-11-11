@@ -19,3 +19,14 @@ export const hotTostSuccessConfig = {
     color: "white",
   },
 };
+
+export const hotToastInfoConfig = {
+  iconTheme: {
+    primary: "white",
+    secondary: "#06539c",
+  },
+  style: {
+    background: "#06539c",
+    color: "white",
+  },
+};

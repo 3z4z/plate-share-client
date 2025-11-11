@@ -17,7 +17,6 @@ export default function FoodCard({ food }) {
     expire_date,
     donor_name,
   } = food;
-  console.log("food_status", food_status);
   const { pathname } = useLocation();
   return (
     <div

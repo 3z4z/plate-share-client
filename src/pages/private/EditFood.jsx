@@ -22,31 +22,6 @@ export default function EditFoodPage() {
     //   navigate("/");
     // }
   }, [food, navigate, user]);
-  const {
-    description,
-    expire_date,
-    food_status,
-    donor_name,
-    donor_image,
-    donor_email,
-    image,
-    name,
-    pickup_location,
-    quantity,
-  } = food;
-  const oldFood = {
-    // Do not change this order!
-    name,
-    image,
-    quantity,
-    pickup_location,
-    expire_date,
-    description,
-    donor_name,
-    donor_email,
-    donor_image,
-    food_status,
-  };
   const isUserSame = food.donor_email === user.email;
   const handleFoodEdit = (data) => {
     console.log("Trying to edit:", food.name);
@@ -55,21 +30,14 @@ export default function EditFoodPage() {
         const payload = {
           ...data,
           expire_date: data.expire_date ? data.expire_date.toISOString() : null,
+          edited_at: new Date().toISOString(),
+          donor_name: user.displayName,
+          donor_email: user.email,
+          donor_image: user.photoURL,
         };
-        if (JSON.stringify(payload) !== JSON.stringify(oldFood)) {
-          const result = {
-            ...payload,
-            edited_at: new Date().toISOString(),
-            donor_name: user.displayName,
-            donor_email: user.email,
-            donor_image: user.photoURL,
-          };
-          axios.patch(`/foods/${food._id}`, result);
-          toast.success("Edited Successfully");
-          updateFood(result);
-        } else {
-          toast.error("Nothing to edit!");
-        }
+        axios.patch(`/foods/${food._id}`, payload);
+        toast.success("Edited Successfully");
+        updateFood(payload);
       }
     } catch (err) {
       toast.error(err.response.data);

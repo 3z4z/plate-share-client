@@ -10,7 +10,7 @@ export const useFoodsStore = create((set, get) => ({
   myFoods: [],
   food: [],
   setFoods: () => {
-    axiosInstance.get("/foods/available").then((data) =>
+    axiosInstance.get("/foods").then((data) =>
       set({
         foods: data.data,
         isFoodsLoading: false,
@@ -60,4 +60,19 @@ export const useFoodsStore = create((set, get) => ({
     set((state) => ({
       foods: state.foods.map((f) => (f._id === food._id ? food : f)),
     })),
+  updateFoodStatus: (foodId, newStatus) => {
+    set((state) => {
+      const updatedFoods = state.foods.map((food) =>
+        food._id === foodId ? { ...food, food_status: newStatus } : food
+      );
+      let newFoodState = state.food;
+      if (state.food && state.food._id === foodId) {
+        newFoodState = { ...state.food, food_status: newStatus };
+      }
+      return {
+        foods: updatedFoods,
+        food: newFoodState,
+      };
+    });
+  },
 }));

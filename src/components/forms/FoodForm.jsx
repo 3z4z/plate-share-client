@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import DatePicker from "react-datepicker";
 import { useEffect } from "react";
 
-export default function FoodForm({ food = {}, onSubmit, user, isUserSame }) {
+export default function FoodForm({ food = {}, onSubmit, user }) {
   const {
     handleSubmit,
     register,
@@ -42,12 +42,13 @@ export default function FoodForm({ food = {}, onSubmit, user, isUserSame }) {
       });
     }
   }, [food, reset, user]);
+  const isSameUser = food.donor_email === user.email;
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="fieldset max-w-2xl mx-auto bg-white pb-8 pt-10 px-12 rounded-lg shadow-lg"
     >
-      <fieldset disabled={!isUserSame}>
+      <fieldset disabled={food?._id && !isSameUser}>
         <div className="flex gap-3 mb-3">
           <div className="flex-1">
             <label className="font-medium pb-2 inline-block">Donor Name</label>
@@ -244,14 +245,14 @@ export default function FoodForm({ food = {}, onSubmit, user, isUserSame }) {
         ></textarea>
         <div className="flex flex-col items-center mt-3">
           <button
-            disabled={!isValid || !isUserSame}
+            disabled={!isValid}
             className="btn btn-primary px-8 w-max rounded-full"
           >
             {food?._id ? "Update Plate" : "Add Plate"}
           </button>
-          {!isUserSame && (
-            <p className="text-error mt-2">
-              This plate is owned by another user!
+          {food?.id && !isSameUser && (
+            <p className="text-error text-md text-center mt-4">
+              This plate is owned by another user
             </p>
           )}
         </div>

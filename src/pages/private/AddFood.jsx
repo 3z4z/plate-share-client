@@ -12,36 +12,11 @@ export default function AddFoodPage() {
   const { addNewFood } = useFoodsStore();
   const { user } = useAuthStore();
   const axios = useAxios();
-  // const formMethods = useForm({
-  //   mode: "onChange",
-  //   defaultValues: {
-  //     name: "",
-  //     image: "",
-  //     quantity: null,
-  //     pickup_location: "",
-  //     expire_date: null,
-  //     description: "",
-  //     donor_name: "",
-  //     donor_email: "",
-  //     donor_image: "",
-  //     food_status: "",
-  //   },
-  // });
-
-  // const { reset, handleSubmit } = formMethods;
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-    // setFoods();
-    // if (user) {
-    //   // reset({
-    //   //   donor_email: user.email,
-    //   //   donor_name: user.displayName,
-    //   //   donor_image: user.photoURL,
-    //   // });
-    // }
   }, []);
   const handleAddFood = async (data) => {
     const payload = {
@@ -53,21 +28,10 @@ export default function AddFoodPage() {
       const res = await axios.post("/foods", payload);
       addNewFood(res.data);
       toast.success("Added Successfully!");
-      // reset({
-      //   name: "",
-      //   image: "",
-      //   quantity: null,
-      //   pickup_location: "",
-      //   expire_date: null,
-      //   description: "",
-      //   donor_name: "",
-      //   donor_email: "",
-      //   donor_image: "",
-      //   food_status: "",
-      // });
     } catch (err) {
       if (err.response?.status === 409) {
         toast.error(err.response.data);
+        console.log("err", err);
       } else {
         toast.error("Failed to add food.");
       }
@@ -82,12 +46,7 @@ export default function AddFoodPage() {
         }
         margins={"my-10"}
       />
-      <FoodForm
-        onSubmit={handleAddFood}
-        // formMethods={formMethods}
-        food={{}}
-        user={user}
-      />
+      <FoodForm onSubmit={handleAddFood} food={{}} user={user} />
     </section>
   );
 }

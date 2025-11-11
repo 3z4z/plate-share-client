@@ -1,13 +1,27 @@
-export default function RequestFoodModal() {
+import { useRequestStore } from "../../stores/useRequestStore";
+import RequestFoodForm from "../forms/RequestFoodForm";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+
+export default function RequestFoodModal({ id }) {
+  const { isRequestModalOpen, setIsRequestModalOpen } = useRequestStore();
+  const closeModal = () => {
+    setIsRequestModalOpen(false);
+  };
   return (
-    <dialog className="modal">
-      <div className="modal-box">
-        <h3 className="font-bold text-lg">Hello!</h3>
-        <p className="py-4">Press ESC key or click the button below to close</p>
+    <dialog className={`modal ${isRequestModalOpen ? "modal-open" : ""}`}>
+      <div className="modal-box bg-white">
+        <div className="text-end">
+          <button
+            className="transition-all hover:text-error cursor-pointer"
+            onClick={closeModal}
+          >
+            <IoIosCloseCircleOutline className="w-7 h-7" />
+          </button>
+        </div>
+        <RequestFoodForm id={id} />
         <div className="modal-action">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
-            <button className="btn">Close</button>
           </form>
         </div>
       </div>

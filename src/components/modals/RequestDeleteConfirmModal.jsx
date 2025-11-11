@@ -1,27 +1,28 @@
 import toast from "react-hot-toast";
 import useAxios from "../../hooks/useAxios";
-import { useFoodsStore } from "../../stores/useFoodsStore";
+import { useRequestStore } from "../../stores/useRequestStore";
 
-export default function FoodDeleteConfirmModal({
+export default function RequestDeleteConfirmModal({
   isDeleteModalOpen,
   setIsDeleteModalOpen,
-  id,
+  foodId,
+  request,
 }) {
-  const { deleteFood } = useFoodsStore();
   const axios = useAxios();
-
-  const handleFoodDelete = async () => {
+  const { deleteRequest } = useRequestStore();
+  const handleRequestDelete = async () => {
+    console.log("Delete works", foodId);
     try {
-      const res = await axios.delete(`/foods/${id}`);
+      const res = await axios.delete(`/requests/${request._id}`);
       if (res.status === 200) {
-        deleteFood(id);
-        toast.success("Deleted your donation!");
+        deleteRequest(request._id);
+        toast.success("Request Deleted!");
         setIsDeleteModalOpen(false);
       } else {
         toast.error("Something is wrong!");
       }
     } catch (err) {
-      toast.error(err?.message);
+      toast.error(err.response.data.message);
     }
   };
   return (
@@ -40,7 +41,7 @@ export default function FoodDeleteConfirmModal({
             >
               Cancel
             </button>
-            <button className="btn btn-error" onClick={handleFoodDelete}>
+            <button className="btn btn-error" onClick={handleRequestDelete}>
               Delete
             </button>
           </form>
