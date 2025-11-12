@@ -5,6 +5,7 @@ import RequestDeleteConfirmModal from "../modals/RequestDeleteConfirmModal";
 import cookingIcon from "../../assets/cooking.png";
 import SpinnerLoader from "../loaders/SpinnerLoader";
 import FieldSkeletonLoader from "../loaders/FieldSkeletonLoader";
+import NoTableDataComponent from "../common/NoTableData";
 
 export default function MyRequestsTable({ myRequests }) {
   const { foods, setFoods, isFoodsLoading } = useFoodsStore();
@@ -14,127 +15,127 @@ export default function MyRequestsTable({ myRequests }) {
     setFoods();
   }, [setFoods]);
   return (
-    <table className="table">
-      <thead className="bg-base-200">
-        <tr>
-          <th className="w-1/16">Sl No.</th>
-          <th className="w-4/16">Requested Foods</th>
-          <th className="w-3/16">Plate Owner</th>
-          <th className="w-2/16 text-center">Quantity</th>
-          <th className="w-2/16 text-center">Request Status</th>
-          <th className="w-3/16 text-center">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {myRequests.length > 0 ? (
-          myRequests.map((request, index) => {
-            const { requestStatus, foodId } = request;
-            const requestedFood = foods.find((food) => food._id === foodId);
-            return (
-              <tr key={index} className="odd:bg-base-100 *:py-1.5">
-                <td className="font-bold ps-5">{index + 1 || "#"}</td>
-                <td>
-                  <div className="flex gap-3 items-center">
-                    <div>
+    <>
+      {myRequests.length > 0 ? (
+        <table className="table">
+          <thead className="bg-base-200">
+            <tr>
+              <th className="w-1/16">Sl No.</th>
+              <th className="w-4/16">Requested Foods</th>
+              <th className="w-3/16">Plate Owner</th>
+              <th className="w-2/16 text-center">Quantity</th>
+              <th className="w-2/16 text-center">Request Status</th>
+              <th className="w-3/16 text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {myRequests.map((request, index) => {
+              const { requestStatus, foodId } = request;
+              const requestedFood = foods.find((food) => food._id === foodId);
+              return (
+                <tr key={index} className="odd:bg-base-100 *:py-1.5">
+                  <td className="font-bold ps-5">{index + 1 || "#"}</td>
+                  <td>
+                    <div className="flex gap-3 items-center">
+                      <div>
+                        {isFoodsLoading ? (
+                          <SpinnerLoader size={"loading-xl"} />
+                        ) : (
+                          <figure className="w-10 h-10 rounded-sm flex items-center justify-center border border-base-300 bg-gray-300 overflow-hidden">
+                            <img
+                              src={requestedFood?.image || cookingIcon}
+                              alt=""
+                              className="w-full h-full object-cover"
+                            />
+                          </figure>
+                        )}
+                      </div>
                       {isFoodsLoading ? (
-                        <SpinnerLoader size={"loading-xl"} />
+                        <FieldSkeletonLoader />
                       ) : (
-                        <figure className="w-10 h-10 rounded-sm flex items-center justify-center border border-base-300 bg-gray-300 overflow-hidden">
-                          <img
-                            src={requestedFood?.image || cookingIcon}
-                            alt=""
-                            className="w-full h-full object-cover"
-                          />
-                        </figure>
+                        <span>
+                          {requestedFood?.name || "Unknown / Deleted"}
+                        </span>
                       )}
                     </div>
+                  </td>
+                  <td>
                     {isFoodsLoading ? (
                       <FieldSkeletonLoader />
                     ) : (
-                      <span>{requestedFood?.name || "Unknown / Deleted"}</span>
+                      <p>{requestedFood?.donor_name || "Unknown"}</p>
                     )}
-                  </div>
-                </td>
-                <td>
-                  {isFoodsLoading ? (
-                    <FieldSkeletonLoader />
-                  ) : (
-                    <p>{requestedFood?.donor_name || "Unknown"}</p>
-                  )}
-                  <div className={`text-xs ${isFoodsLoading ? "mt-1" : ""}`}>
+                    <div className={`text-xs ${isFoodsLoading ? "mt-1" : ""}`}>
+                      {isFoodsLoading ? (
+                        <FieldSkeletonLoader />
+                      ) : (
+                        <p>
+                          <span className="me-1">Pickup:</span>
+                          <span>
+                            {requestedFood?.pickup_location || "Unknown"}
+                          </span>
+                        </p>
+                      )}
+                    </div>
+                  </td>
+                  <td className="text-center">
                     {isFoodsLoading ? (
                       <FieldSkeletonLoader />
                     ) : (
-                      <p>
-                        <span className="me-1">Pickup:</span>
-                        <span>
-                          {requestedFood?.pickup_location || "Unknown"}
-                        </span>
-                      </p>
+                      <p>{requestedFood?.quantity || "Unknown"}</p>
                     )}
-                  </div>
-                </td>
-                <td className="text-center">
-                  {isFoodsLoading ? (
-                    <FieldSkeletonLoader />
-                  ) : (
-                    <p>{requestedFood?.quantity || "Unknown"}</p>
-                  )}
-                </td>
-                <td className="text-center">
-                  {isFoodsLoading ? (
-                    <FieldSkeletonLoader />
-                  ) : (
-                    <div
-                      className={`badge badge-sm ${
-                        requestStatus === "Pending"
-                          ? "badge-warning"
-                          : requestStatus === "Accepted"
-                          ? "badge-success"
-                          : "badge-error"
-                      }`}
-                    >
-                      {requestStatus || "Unknown"}
-                    </div>
-                  )}
-                </td>
-                <td>
-                  {isFoodsLoading ? (
-                    <FieldSkeletonLoader />
-                  ) : (
-                    <div className="flex gap-3 justify-center items-center">
-                      <Link
-                        to={`/food/${foodId}`}
-                        className="btn btn-primary btn-sm rounded-full"
+                  </td>
+                  <td className="text-center">
+                    {isFoodsLoading ? (
+                      <FieldSkeletonLoader />
+                    ) : (
+                      <div
+                        className={`badge badge-sm ${
+                          requestStatus === "Pending"
+                            ? "badge-warning"
+                            : requestStatus === "Accepted"
+                            ? "badge-success"
+                            : "badge-error"
+                        }`}
                       >
-                        View
-                      </Link>
-                      <button
-                        onClick={() => setIsDeleteModalOpen(true)}
-                        className="btn btn-error btn-soft btn-sm rounded-full"
-                      >
-                        Delete
-                      </button>
-                      <RequestDeleteConfirmModal
-                        isDeleteModalOpen={isDeleteModalOpen}
-                        setIsDeleteModalOpen={setIsDeleteModalOpen}
-                        foodId={foodId}
-                        request={request}
-                      />
-                    </div>
-                  )}
-                </td>
-              </tr>
-            );
-          })
-        ) : (
-          <tr>
-            <td colSpan={6} className="py-10 text-center ">
-              <p className="text-xl text-error mb-6">No Requests in the list</p>
-            </td>
-          </tr>
-        )}
-      </tbody>
-    </table>
+                        {requestStatus || "Unknown"}
+                      </div>
+                    )}
+                  </td>
+                  <td>
+                    {isFoodsLoading ? (
+                      <FieldSkeletonLoader />
+                    ) : (
+                      <div className="flex gap-3 justify-center items-center">
+                        <Link
+                          to={`/food/${foodId}`}
+                          className="btn btn-primary btn-sm rounded-full"
+                        >
+                          View
+                        </Link>
+                        <button
+                          onClick={() => setIsDeleteModalOpen(true)}
+                          className="btn btn-error btn-soft btn-sm rounded-full"
+                        >
+                          Delete
+                        </button>
+                        <RequestDeleteConfirmModal
+                          isDeleteModalOpen={isDeleteModalOpen}
+                          setIsDeleteModalOpen={setIsDeleteModalOpen}
+                          foodId={foodId}
+                          request={request}
+                        />
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      ) : (
+        <NoTableDataComponent text={"No Requests in the list."} />
+      )}
+    </>
   );
 }

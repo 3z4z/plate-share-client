@@ -56,7 +56,6 @@ export const useRequestStore = create((set, get) => ({
   },
 
   // For food owner
-
   manageARequest: (requestId, action) => {
     const { updateFoodStatus, foods } = useFoodsStore.getState();
     set((state) => ({

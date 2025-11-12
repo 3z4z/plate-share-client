@@ -52,10 +52,10 @@ export default function FoodDetailsPage() {
         <div className={container}>
           <div className="grid md:grid-cols-2 gap-10 pt-6">
             <div className="order-2 md:order-1">
-              <div className="flex items-center gap-4">
-                <h1 className="text-4xl">{name}</h1>
+              <div className="flex items-center gap-4 flex-wrap">
+                <h1 className="sm:text-4xl text-3xl">{name}</h1>
                 <p
-                  className={`badge ${
+                  className={`badge sm:badge-md badge-sm ${
                     food_status === "Available"
                       ? "badge-success"
                       : "badge-warning"
@@ -68,15 +68,15 @@ export default function FoodDetailsPage() {
                 Pickup from:
                 <span className="ms-1 font-medium">{pickup_location}</span>
               </p>
-              <div className="flex items-center gap-4">
-                <figure className="w-26 h-26 rounded-full overflow-hidden border-3 border-primary ring-6 ring-primary/25">
+              <div className="flex items-center gap-4 flex-wrap">
+                <figure className="sm:w-26 sm:h-26 w-12 h-12 rounded-full overflow-hidden border-3 border-primary ring-6 ring-primary/25">
                   <img src={donor_image} alt="" />
                 </figure>
                 <div>
-                  <p className="font-bold text-primary text-xl mb-1">
+                  <p className="font-bold text-primary sm:text-xl text-lg mb-1">
                     {donor_name}
                   </p>
-                  <p>{donor_email}</p>
+                  <p className="sm:break-keep break-all">{donor_email}</p>
                 </div>
               </div>
               <p className="mt-10 mb-1">

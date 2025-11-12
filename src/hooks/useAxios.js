@@ -25,9 +25,6 @@ export default function useAxios() {
           navigate("/auth/login");
         }
         return Promise.reject(err);
-        // return status >= 400 && status < 409
-        //   ? (signOut(), navigate("/auth/login"))
-        //   : null;
       }
     );
     return () => {

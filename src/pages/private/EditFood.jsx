@@ -18,9 +18,6 @@ export default function EditFoodPage() {
   }, [setFood, id]);
   useEffect(() => {
     if (!food) return;
-    // if (user && food && user.email !== food.donor_email) {
-    //   navigate("/");
-    // }
   }, [food, navigate, user]);
   const isUserSame = food.donor_email === user.email;
   const handleFoodEdit = (data) => {
