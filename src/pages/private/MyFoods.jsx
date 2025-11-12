@@ -17,9 +17,6 @@ export default function MyFoodsPage() {
       setMyFoods(user.email);
     }
   }, [setMyFoods, user]);
-  // return (
-  //   <>{isFoodsLoading ? <p>Loading...</p> : <FoodsTable foods={myFoods} />}</>
-  // );
   return (
     <div className="px-3 max-w-[1600px] mx-auto ">
       <CommonTitleComponent title={"My Shared Plates"} margins={"my-7"} />

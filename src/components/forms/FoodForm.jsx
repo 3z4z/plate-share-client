@@ -57,16 +57,7 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
               placeholder="Donor Name"
               disabled
               className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-100"
-              {...register(
-                "donor_name"
-                //   {
-                //   required: "Donor Name is Required!",
-                //   minLength: {
-                //     value: 3,
-                //     message: validationMessage.name,
-                //   },
-                // }
-              )}
+              {...register("donor_name")}
             />
             {errors.donor_name && (
               <p className="text-error mt-0.5">{errors.donor_name.message}</p>
@@ -81,20 +72,8 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
               disabled
               placeholder="Donor Email"
               className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-100"
-              {...register(
-                "donor_email"
-                //   {
-                //   required: "Donor Email is required!",
-                //   pattern: {
-                //     value: regex.email,
-                //     message: validationMessage.email,
-                //   },
-                // }
-              )}
+              {...register("donor_email")}
             />
-            {/* {errors.donor_email && (
-              <p className="text-error mt-0.5">{errors.donor_email.message}</p>
-            )} */}
           </div>
         </div>
         <label className="font-medium">Donor Image Url</label>
@@ -243,7 +222,7 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
           className="textarea w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-100"
           {...register("description")}
         ></textarea>
-        <div className="flex flex-col items-center mt-3">
+        <div className="flex flex-col items-center mt-8">
           <button
             disabled={!isValid}
             className="btn btn-primary px-8 w-max rounded-full"

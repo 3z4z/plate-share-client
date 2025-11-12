@@ -28,9 +28,7 @@ export default function FoodDeleteConfirmModal({
     <dialog className={`modal ${isDeleteModalOpen ? "modal-open" : ""}`}>
       <div className="modal-box">
         <p className="text-3xl py-6 text-center font-semibold">Are you Sure?</p>
-        <p className="text-center pb-8">
-          You are going to delete this Request.
-        </p>
+        <p className="text-center pb-8">You are going to delete this Plate.</p>
         <div className="modal-action justify-center">
           <form method="dialog" className="gap-3 flex items-center">
             {/* if there is a button in form, it will close the modal */}

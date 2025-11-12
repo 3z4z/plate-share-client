@@ -6,6 +6,7 @@ import FoodCard from "../common/FoodCard";
 import { GiKnifeFork } from "react-icons/gi";
 import { Link } from "react-router";
 import CardSkeletonLoader from "../loaders/CardSkeletonLoader";
+import { largeBtn } from "../../utils/classNames";
 
 export default function FeaturedFoodsComponent() {
   const { featuredFoods, setFeaturedFoods, isFoodsLoading } = useFoodsStore();
@@ -35,10 +36,7 @@ export default function FeaturedFoodsComponent() {
         )}
       </div>
       <div className="flex justify-center">
-        <Link
-          to={"/foods"}
-          className="btn btn-primary h-auto mt-12 py-3 px-8 rounded-full group"
-        >
+        <Link to={"/foods"} className={`${largeBtn} mt-12 group`}>
           <GiKnifeFork className="transition-all group-hover:rotate-360 duration-700 text-xl" />
           <span className="ms-1">Show All Plates</span>
         </Link>

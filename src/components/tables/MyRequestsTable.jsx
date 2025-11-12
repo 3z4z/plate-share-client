@@ -42,7 +42,11 @@ export default function MyRequestsTable({ myRequests }) {
                         <figure className="w-10 h-10 rounded-sm flex items-center justify-center border border-base-300 bg-gray-300 overflow-hidden">
                           <img
                             src={requestedFood?.image || cookingIcon}
-                            alt={`${requestedFood.name}'s image`}
+                            alt={`${
+                              isFoodsLoading
+                                ? "Loading..."
+                                : requestedFood.name || "Unknown"
+                            }'s image`}
                             className="w-full h-full object-cover"
                           />
                         </figure>

@@ -8,6 +8,7 @@ import { useRequestStore } from "../../stores/useRequestStore";
 import RequestFoodModal from "../../components/modals/RequestFoodModal";
 import RequestsByFoodTable from "../../components/tables/RequestsByFoodTable";
 import dayjs from "dayjs";
+import InvalidProductComponent from "../../components/InvalidProduct";
 
 export default function FoodDetailsPage() {
   const { id } = useParams();
@@ -112,9 +113,7 @@ export default function FoodDetailsPage() {
           <RequestsByFoodTable isLoading={isFoodsLoading} foodId={id} />
         </div>
       ) : (
-        <p className="text-error text-xl py-10 text-center">
-          Oops! your requested food isn't there yet!
-        </p>
+        <InvalidProductComponent />
       )}
     </>
   );
