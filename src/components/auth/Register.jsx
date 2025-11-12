@@ -56,6 +56,7 @@ export default function RegisterPage() {
   };
   return (
     <>
+      <title>Register | PlateShare</title>
       {!user ? (
         <form
           onSubmit={handleSubmit(handleRegister)}

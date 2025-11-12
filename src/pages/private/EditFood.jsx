@@ -42,6 +42,7 @@ export default function EditFoodPage() {
   };
   return (
     <section>
+      <title>Edit Food | PlateShare</title>
       <CommonTitleComponent
         title={"Edit Your Meal"}
         subtitle={

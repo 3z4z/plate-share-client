@@ -19,6 +19,7 @@ export default function MyFoodsPage() {
   }, [setMyFoods, user]);
   return (
     <div className="px-3 max-w-[1600px] mx-auto ">
+      <title>My Foods | PlateShare</title>
       <CommonTitleComponent title={"My Shared Plates"} margins={"my-7"} />
       <h5 className="md:text-xl md:mb-5 mb-2 md:pt-0 pt-5">
         <span>Your Total Shares:</span>

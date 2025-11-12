@@ -49,8 +49,8 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
       className="fieldset max-w-2xl mx-auto bg-white pb-8 pt-10 px-12 rounded-lg shadow-lg"
     >
       <fieldset disabled={food?._id && !isSameUser}>
-        <div className="flex gap-3 mb-3">
-          <div className="flex-1">
+        <div className="flex gap-3 sm:flex-nowrap flex-wrap mb-3">
+          <div className="sm:flex-1 w-full">
             <label className="font-medium pb-2 inline-block">Donor Name</label>
             <input
               type="text"
@@ -84,8 +84,8 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
           className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-100"
           {...register("donor_image")}
         />
-        <div className="flex gap-3 mb-3 mt-3">
-          <div className="flex-1">
+        <div className="flex sm:flex-nowrap flex-wrap gap-3 mb-3 mt-3">
+          <div className="sm:flex-1 w-full">
             <label className="font-medium pb-2 inline-block">Food Name</label>
             <input
               type="text"
@@ -122,8 +122,8 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
             )}
           </div>
         </div>
-        <div className="flex gap-3 mb-3">
-          <div className="max-w-36">
+        <div className="flex md:flex-nowrap flex-wrap gap-3 mb-3">
+          <div className="sm:w-[calc(50%-6px)] w-full md:max-w-36">
             <label className="font-medium pb-2 inline-block">Quantity</label>
             <input
               type="number"
@@ -142,7 +142,7 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
               <p className="text-error mt-0.5">{errors.quantity.message}</p>
             )}
           </div>
-          <div className="flex-1">
+          <div className="sm:w-[calc(50%-6px)] w-full md:flex-1">
             <label className="font-medium pb-2 inline-block">Food Status</label>
             <select
               defaultValue=""
@@ -150,14 +150,14 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
               {...register("food_status", {
                 required: "Food Status is Required",
                 validate: (value) =>
-                  value !== "Unavailable" || "Unavailable is not allowed",
+                  value !== "Donated" || "Donated is not allowed",
               })}
             >
               <option value="" disabled>
                 Select a status
               </option>
               <option value={"Available"}>Available</option>
-              <option value={"Unavailable"}>Unavailable</option>
+              <option value={"Donated"}>Donated</option>
             </select>
 
             {errors.food_status && (

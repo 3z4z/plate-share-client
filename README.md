@@ -1,16 +1,73 @@
-# React + Vite
+# Plate Share – Share Your Foods
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**PlateShare** lets you share your extra meals with others, turning food surplus into moments of joy. Connect with your community, reduce waste, and spread kindness one plate at a time.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Link
 
-## React Compiler
+[Plate Share](https://plate-share.netlify.app/)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Overview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Join PlateShare** and make an impact by sharing food with people in need. Whether you’re a home cook, restaurant, or simply someone with a little extra, PlateShare helps you connect and share meals safely and easily.
+
+> Be The Reason. Someone Smiles Today.”
+
+---
+
+## Features
+
+- **Food Sharing System** – Post, browse, and request available meals.
+- **User Authentication** – Secure sign-up and login using Firebase.
+- **Real-time Requests** – Manage food requests and availability instantly.
+- **Community Connection** – Connect donors and receivers with transparency.
+- **Food Status Management** – Track available, pending, and shared meals easily.
+- **Dynamic Routing** – Smooth navigation powered by React Router.
+- **Responsive Design** – Beautiful layout across all devices.
+
+---
+
+## Tech Stack
+
+**Frontend:**
+
+- React (JSX + Vite)
+- Zustand (State management)
+- Tailwind CSS + DaisyUI (UI components)
+- React Icons (Icon library)
+- Firebase Authentication
+- React Hot Toast (Notifications)
+- React Datepicker
+- React Hook Form (Forms management)
+- AOS (Dynamic animations)
+- Axios (API management)
+- DayJS (Date formatting)
+
+**Backend & API:**
+
+- Node.js + Express
+- MongoDB (NodeJS Driver)
+- Firebase Admin SDK Authentication
+- RESTful API Architecture
+
+---
+
+## Installation & Setup
+
+```bash
+git clone https://github.com/3z4z/plate-share-client
+cd plate-share
+npm install
+npm run dev
+```
+
+---
+
+## Acknowledgements
+
+- Built with MERN Stack
+- Inspired by community food-sharing initiatives
+- Designed and developed by **Md. Salman Ezaz**

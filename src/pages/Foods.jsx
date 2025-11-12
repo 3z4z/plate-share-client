@@ -20,6 +20,7 @@ export default function FoodsPage() {
   }, [setAvailableFoods]);
   return (
     <div className={container}>
+      <title>Available Foods | PlateShare</title>
       <div className="flex justify-between my-10 flex-wrap gap-4">
         <h1 className="sm:text-3xl text-2xl flex items-center gap-2">
           {isFoodsLoading ? (

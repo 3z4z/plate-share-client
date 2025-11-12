@@ -3,8 +3,11 @@ import { Outlet } from "react-router";
 import FooterComponent from "../components/common/Footer";
 import HeaderComponent from "../components/common/Header";
 import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function HomeLayout() {
+  AOS.init();
   const { initAuthListener } = useAuthStore();
   useEffect(() => {
     const unsubscribe = initAuthListener();

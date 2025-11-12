@@ -48,6 +48,7 @@ export default function LoginPage() {
   };
   return (
     <>
+      <title>Login | PlateShare</title>
       {!user ? (
         <form
           onSubmit={handleSubmit(handleLogin)}

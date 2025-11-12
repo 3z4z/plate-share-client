@@ -25,7 +25,6 @@ export const useFoodsStore = create((set, get) => ({
     );
   },
   setFood: (foodId) => {
-    set({ isFoodFound: false });
     axiosInstance.get(`/foods/${foodId}`).then((data) =>
       set({
         food: data.data,

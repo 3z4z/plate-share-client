@@ -20,9 +20,10 @@ export default function FoodCard({ food }) {
   const { pathname } = useLocation();
   return (
     <div
+      data-aos="fade-up"
       className={`flex flex-col justify-between ${
         pathname.includes("foods") ? "p-4" : "p-6 "
-      } rounded-xl shadow bg-white transition-all hover:-translate-y-2 duration-300 hover:shadow-lg group hover:bg-secondary/5`}
+      } rounded-xl shadow bg-white transition-all duration-300 hover:shadow-lg group hover:bg-secondary/5 cursor-pointer`}
     >
       <div>
         <figure className="rounded-xl border border-gray-100 w-full aspect-[5/3.5] overflow-hidden flex items-center justify-center relative">

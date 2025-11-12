@@ -5,6 +5,7 @@ import { largeBtn } from "../utils/classNames";
 export default function ErrorPage() {
   return (
     <div className="h-dvh w-full flex items-center flex-col mt-20">
+      <title>404 Not Found</title>
       <div>
         <figure className="max-w-md">
           <img src={errorImg} alt="" />

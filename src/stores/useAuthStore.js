@@ -48,8 +48,7 @@ export const useAuthStore = create(
           await updateProfile(user, {
             displayName: fullName,
             photoURL:
-              userImage ||
-              "https://cdn-icons-png.flaticon.com/512/149/149071.png",
+              userImage || "https://images2.imgbox.com/03/34/DB5GzhxX_o.png",
           });
           set({ user });
           const newUser = {

@@ -16,7 +16,10 @@ export default function OurMissionComponent() {
   return (
     <section className="mt-28">
       <div className="grid lg:grid-cols-2 gap-18 items-center">
-        <figure className="rounded-4xl overflow-hidden lg:max-w-full max-w-md mx-auto order-2 lg:order-1">
+        <figure
+          data-aos="flip-up"
+          className="rounded-4xl overflow-hidden lg:max-w-full max-w-md mx-auto order-2 lg:order-1"
+        >
           <img src={ourMissionImage} alt="" />
         </figure>
         <div className="order-1 lg:order-2">

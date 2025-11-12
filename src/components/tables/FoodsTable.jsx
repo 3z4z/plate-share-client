@@ -37,7 +37,11 @@ export default function FoodsTable({ foods, isLoading }) {
                 setIsDeleteModalOpen(true);
               };
               return (
-                <tr key={index} className="odd:bg-base-100 *:py-1.5">
+                <tr
+                  data-aos="fade-top"
+                  key={index}
+                  className="even:bg-base-100 *:py-1.5"
+                >
                   <td className="font-bold ps-5">
                     {isLoading ? (
                       <SpinnerLoader size={"loading-sm"} />

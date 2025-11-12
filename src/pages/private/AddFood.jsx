@@ -38,6 +38,7 @@ export default function AddFoodPage() {
   };
   return (
     <section>
+      <title>Add a food | PlateShare</title>
       <CommonTitleComponent
         title={"Share Your Meal"}
         subtitle={

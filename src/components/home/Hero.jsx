@@ -7,7 +7,10 @@ export default function HeroComponent() {
   return (
     <div className={`grid grid-cols-2 gap-10 ${container} md:pt-26 pt-16`}>
       <div className="not-lg:col-span-2">
-        <h1 className="text-[2.5rem] leading-10 relative mb-6">
+        <h1
+          data-aos="fade-left"
+          className="text-[2.5rem] leading-10 relative mb-6"
+        >
           <span className="z-0 text-accent/7 md:text-7xl text-5xl absolute -top-8 left-0 select-none">
             <span>PLATE</span>
             <span className="text-primary/7">SHARE</span>
@@ -29,7 +32,10 @@ export default function HeroComponent() {
           title={"Explore Plates"}
         />
       </div>
-      <figure className="not-lg:col-span-2 ps-8 flex justify-center">
+      <figure
+        data-aos="fade-right"
+        className="not-lg:col-span-2 ps-8 flex justify-center"
+      >
         <img src={heroImg} className="lg:w-full" alt="" />
       </figure>
     </div>

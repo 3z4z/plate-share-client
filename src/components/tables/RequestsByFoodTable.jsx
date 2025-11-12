@@ -110,7 +110,11 @@ export default function RequestsByFoodTable({ foodId, isLoading }) {
                       }
                     };
                     return (
-                      <tr key={index}>
+                      <tr
+                        data-aos="fade-top"
+                        className="even:bg-base-100 *:py-1.5"
+                        key={index}
+                      >
                         <td className="w-1/16">
                           {isLoading ? (
                             <FieldSkeletonLoader />
