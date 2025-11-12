@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useFoodsStore } from "../../stores/useFoodsStore";
-import CommonTitleComponent from "../common/CommonTitle";
-import FoodCard from "../common/FoodCard";
 
 import { GiKnifeFork } from "react-icons/gi";
-import { Link } from "react-router";
+
+import CommonTitleComponent from "../common/CommonTitle";
+import FoodCard from "../common/FoodCard";
 import CardSkeletonLoader from "../loaders/CardSkeletonLoader";
-import { largeBtn } from "../../utils/classNames";
+import { largeBtnIcon } from "../../utils/classNames";
+import LargeBtn from "../common/LargeBtn";
 
 export default function FeaturedFoodsComponent() {
   const { featuredFoods, setFeaturedFoods, isFoodsLoading } = useFoodsStore();
@@ -36,10 +37,12 @@ export default function FeaturedFoodsComponent() {
         )}
       </div>
       <div className="flex justify-center">
-        <Link to={"/foods"} className={`${largeBtn} mt-12 group`}>
-          <GiKnifeFork className="transition-all group-hover:rotate-360 duration-700 text-xl" />
-          <span className="ms-1">Show All Plates</span>
-        </Link>
+        <LargeBtn
+          path={"/foods"}
+          title={"Show All Plates"}
+          customClass={"mt-12 group"}
+          icon={<GiKnifeFork className={largeBtnIcon} />}
+        />
       </div>
     </section>
   );

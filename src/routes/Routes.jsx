@@ -28,7 +28,6 @@ export const router = createBrowserRouter([
       },
       {
         path: "food/:id",
-        errorElement: <ErrorPage />,
         element: (
           <PrivateRoute>
             <FoodDetailsPage />

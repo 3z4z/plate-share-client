@@ -64,7 +64,9 @@ export default function FoodsTable({ foods, isLoading }) {
                     {isLoading ? (
                       <FieldSkeletonLoader />
                     ) : (
-                      <span className="font-medium">{name || "Unknown"}</span>
+                      <span className="font-medium">
+                        {name || "Unknown / Deleted"}
+                      </span>
                     )}
                   </div>
                 </td>
@@ -100,19 +102,19 @@ export default function FoodsTable({ foods, isLoading }) {
                     <div className="flex gap-3 justify-center items-center">
                       <Link
                         to={`/food/${id}`}
-                        className="btn btn-primary btn-sm"
+                        className="btn btn-primary btn-sm rounded-full"
                       >
                         View
                       </Link>
                       <Link
                         to={`/edit-food/${id}`}
-                        className="btn btn-secondary btn-sm"
+                        className="btn btn-secondary btn-sm rounded-full"
                       >
                         Edit
                       </Link>
                       <button
                         onClick={handleDeleteModalOpen}
-                        className="btn btn-error btn-soft btn-sm"
+                        className="btn btn-error btn-soft btn-sm rounded-full"
                       >
                         Delete
                       </button>

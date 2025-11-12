@@ -1,15 +1,15 @@
-import { Link } from "react-router";
-import { largeBtn } from "../utils/classNames";
-
+import brokenPlateImg from "../assets/broken.png";
+import LargeBtn from "./common/LargeBtn";
 export default function InvalidProductComponent() {
   return (
-    <div className="flex flex-col items-center py-10">
-      <p className="text-2xl text-error font-medium mb-10">
-        Looks like your requested Plate isn't ready yet
+    <div className="flex flex-col items-center py-10 px-3 text-center">
+      <figure>
+        <img src={brokenPlateImg} alt="" />
+      </figure>
+      <p className="text-2xl text-error font-medium mt-5 mb-10">
+        Looks like your requested Plate in broken or unavailable!
       </p>
-      <Link to={"/foods"} className={largeBtn}>
-        Check Available Plates
-      </Link>
+      <LargeBtn path={"/foods"} title={"Check Available Plates"} />
     </div>
   );
 }

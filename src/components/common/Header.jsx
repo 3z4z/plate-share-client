@@ -51,117 +51,119 @@ export default function HeaderComponent() {
 
   return (
     <header className="bg-white relative z-50 py-15">
-      <div
-        className={`${container} md:w-full w-[calc(100%-1rem)]! py-5 flex items-center justify-between shadow-md rounded-full bg-base-100 border border-base-300/35 fixed top-3 left-1/2 -translate-x-1/2`}
-      >
-        <div className="lg:w-1/4 flex items-center">
-          <button
-            onClick={() => setIsDockOpen(true)}
-            className="btn lg:hidden h-auto bg-transparent shadow-none border-0 pe-4 ps-0"
-          >
-            <HiMenuAlt1 className="text-2xl text-accent" />
-          </button>
-          <Link to="/">
-            <BrandLogoComponent />
-          </Link>
-        </div>
-        <div className="lg:w-1/2 hidden lg:block">
-          <NavbarComponent />
-        </div>
-        <div className="lg:w-1/4 flex justify-end items-center gap-3">
-          {isAuthLoading ? (
-            <SpinnerLoader size={"loading-lg"} color={"text-primary"} />
-          ) : !user ? (
-            <>
-              <div
-                className={`dropdown dropdown-end ${
-                  user ? "hidden" : "block lg:hidden"
-                }`}
-              >
+      <div className="w-full bg-white/0 rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[4.3px] border border-white/30 fixed py-3.25 top-0 left-0">
+        <div
+          className={`${container} md:w-full w-[calc(100%-1rem)]! py-5 flex items-center justify-between shadow-md rounded-full bg-base-100 border border-base-300/35`}
+        >
+          <div className="lg:w-1/4 flex items-center">
+            <button
+              onClick={() => setIsDockOpen(true)}
+              className="btn lg:hidden h-auto bg-transparent shadow-none border-0 pe-4 ps-0"
+            >
+              <HiMenuAlt1 className="text-2xl text-accent" />
+            </button>
+            <Link to="/">
+              <BrandLogoComponent />
+            </Link>
+          </div>
+          <div className="lg:w-1/2 hidden lg:block">
+            <NavbarComponent />
+          </div>
+          <div className="lg:w-1/4 flex justify-end items-center gap-3">
+            {isAuthLoading ? (
+              <SpinnerLoader size={"loading-lg"} color={"text-primary"} />
+            ) : !user ? (
+              <>
+                <div
+                  className={`dropdown dropdown-end ${
+                    user ? "hidden" : "block lg:hidden"
+                  }`}
+                >
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn w-10 h-10 p-0 rounded-full"
+                  >
+                    <img src={userImg} alt="" className="w-8" />
+                  </div>
+                  <ul
+                    tabIndex={-1}
+                    className="dropdown-content menu bg-base-100 rounded-box z-2 w-52 p-2 shadow-sm"
+                  >
+                    {authActions.map((link, index) => (
+                      <li key={index}>
+                        <Link
+                          className={`link link-hover py-2.5 hover:bg-white border border-transparent rounded-full ${
+                            link.path.includes("login")
+                              ? "link-primary hover:border-primary active:border-primary"
+                              : "link-secondary hover:border-secondary active:border-secondary"
+                          }`}
+                          to={link.path}
+                        >
+                          {link.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="lg:flex hidden justify-end gap-2">
+                  {authActions.map((link, index) => (
+                    <Link
+                      key={index}
+                      className={`btn rounded-full ${
+                        link.path.includes("login")
+                          ? "btn-primary btn-outline"
+                          : "btn-secondary"
+                      }`}
+                      to={link.path}
+                    >
+                      {link.title}
+                    </Link>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="dropdown dropdown-end px-0">
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn w-10 h-10 p-0 rounded-full"
+                  className="btn w-12 h-12 p-0 rounded-full"
                 >
-                  <img src={userImg} alt="" className="w-8" />
+                  <img
+                    src={user.photoURL}
+                    alt=""
+                    className="w-9 h-9 rounded-full"
+                  />
                 </div>
                 <ul
-                  tabIndex={-1}
-                  className="dropdown-content menu bg-base-100 rounded-box z-2 w-52 p-2 shadow-sm"
+                  tabIndex="-1"
+                  className="dropdown-content menu bg-white border border-base-200 shadow-lg rounded-box z-1 w-60 p-2 gap-1"
                 >
-                  {authActions.map((link, index) => (
-                    <li key={index}>
+                  {userActions.map((link, index) =>
+                    link.title.toLowerCase().includes("logout") ? (
+                      <button
+                        onClick={handleSignOut}
+                        key={index}
+                        className="btn bg-transparent rounded-full font-medium! border-0 shadow-none text-error hover:bg-error/15 py-2 px-4 justify-start"
+                      >
+                        {link.icon}
+                        {link.title}
+                      </button>
+                    ) : (
                       <Link
-                        className={`link link-hover py-2.5 hover:bg-white border border-transparent rounded-full ${
-                          link.path.includes("login")
-                            ? "link-primary hover:border-primary active:border-primary"
-                            : "link-secondary hover:border-secondary active:border-secondary"
-                        }`}
+                        key={index}
+                        className="btn bg-transparent rounded-full font-medium! border-0 shadow-none hover:bg-primary/15 py-2 px-4 justify-start"
                         to={link.path}
                       >
+                        {link.icon}
                         {link.title}
                       </Link>
-                    </li>
-                  ))}
+                    )
+                  )}
                 </ul>
               </div>
-              <div className="lg:flex hidden justify-end gap-2">
-                {authActions.map((link, index) => (
-                  <Link
-                    key={index}
-                    className={`btn rounded-full ${
-                      link.path.includes("login")
-                        ? "btn-primary btn-outline"
-                        : "btn-secondary"
-                    }`}
-                    to={link.path}
-                  >
-                    {link.title}
-                  </Link>
-                ))}
-              </div>
-            </>
-          ) : (
-            <div className="dropdown dropdown-end px-0">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn w-12 h-12 p-0 rounded-full"
-              >
-                <img
-                  src={user.photoURL}
-                  alt=""
-                  className="w-9 h-9 rounded-full"
-                />
-              </div>
-              <ul
-                tabIndex="-1"
-                className="dropdown-content menu bg-white border border-base-200 shadow-lg rounded-box z-1 w-60 p-2 gap-1"
-              >
-                {userActions.map((link, index) =>
-                  link.title.toLowerCase().includes("logout") ? (
-                    <button
-                      onClick={handleSignOut}
-                      key={index}
-                      className="btn bg-transparent rounded-full font-medium! border-0 shadow-none text-error hover:bg-error/15 py-2 px-4 justify-start"
-                    >
-                      {link.icon}
-                      {link.title}
-                    </button>
-                  ) : (
-                    <Link
-                      key={index}
-                      className="btn bg-transparent rounded-full font-medium! border-0 shadow-none hover:bg-primary/15 py-2 px-4 justify-start"
-                      to={link.path}
-                    >
-                      {link.icon}
-                      {link.title}
-                    </Link>
-                  )
-                )}
-              </ul>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
       {isDockOpen && (

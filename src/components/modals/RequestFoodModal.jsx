@@ -19,11 +19,6 @@ export default function RequestFoodModal({ id }) {
           </button>
         </div>
         <RequestFoodForm id={id} />
-        <div className="modal-action">
-          <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
-          </form>
-        </div>
       </div>
     </dialog>
   );

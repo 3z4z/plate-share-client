@@ -42,11 +42,7 @@ export default function MyRequestsTable({ myRequests }) {
                         <figure className="w-10 h-10 rounded-sm flex items-center justify-center border border-base-300 bg-gray-300 overflow-hidden">
                           <img
                             src={requestedFood?.image || cookingIcon}
-                            alt={`${
-                              isFoodsLoading
-                                ? "Loading..."
-                                : requestedFood.name || "Unknown"
-                            }'s image`}
+                            alt=""
                             className="w-full h-full object-cover"
                           />
                         </figure>
@@ -55,7 +51,7 @@ export default function MyRequestsTable({ myRequests }) {
                     {isFoodsLoading ? (
                       <FieldSkeletonLoader />
                     ) : (
-                      <span>{requestedFood?.name || "Unknown"}</span>
+                      <span>{requestedFood?.name || "Unknown / Deleted"}</span>
                     )}
                   </div>
                 </td>
@@ -109,13 +105,13 @@ export default function MyRequestsTable({ myRequests }) {
                     <div className="flex gap-3 justify-center items-center">
                       <Link
                         to={`/food/${foodId}`}
-                        className="btn btn-primary btn-sm"
+                        className="btn btn-primary btn-sm rounded-full"
                       >
                         View
                       </Link>
                       <button
                         onClick={() => setIsDeleteModalOpen(true)}
-                        className="btn btn-error btn-soft btn-sm"
+                        className="btn btn-error btn-soft btn-sm rounded-full"
                       >
                         Delete
                       </button>

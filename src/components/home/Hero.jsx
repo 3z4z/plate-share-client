@@ -1,7 +1,7 @@
-import { Link } from "react-router";
 import heroImg from "../../assets/hero.png";
-import { container, largeBtn } from "../../utils/classNames";
+import { container, largeBtnIcon } from "../../utils/classNames";
 import { FaCompass } from "react-icons/fa6";
+import LargeBtn from "../common/LargeBtn";
 
 export default function HeroComponent() {
   return (
@@ -22,10 +22,12 @@ export default function HeroComponent() {
           connecting with those in need while spreading kindness, community, and
           smiles every day.
         </p>
-        <Link to={"/foods"} className={`${largeBtn} group`}>
-          <FaCompass className="text-2xl me-1 group-hover:rotate-360 transition-all duration-700" />
-          <span>Explore Plates</span>
-        </Link>
+        <LargeBtn
+          path={"/foods"}
+          customClass={"group"}
+          icon={<FaCompass className={largeBtnIcon} />}
+          title={"Explore Plates"}
+        />
       </div>
       <figure className="not-lg:col-span-2 ps-8 flex justify-center">
         <img src={heroImg} className="lg:w-full" alt="" />

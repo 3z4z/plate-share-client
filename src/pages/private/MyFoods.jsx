@@ -20,7 +20,7 @@ export default function MyFoodsPage() {
   return (
     <div className="px-3 max-w-[1600px] mx-auto ">
       <CommonTitleComponent title={"My Shared Plates"} margins={"my-7"} />
-      <h5 className="text-xl mb-5">
+      <h5 className="md:text-xl md:mb-5 mb-2 md:pt-0 pt-5">
         <span>Your Total Shares:</span>
         <span className="text-primary ms-1">
           {isFoodsLoading ? (

@@ -64,7 +64,7 @@ export default function FoodCard({ food }) {
       </div>
       <Link
         to={`/food/${id}`}
-        className="btn btn-block btn-secondary btn-outline mt-6 text-nowrap"
+        className="btn btn-block btn-secondary btn-outline mt-6 text-nowrap rounded-full"
       >
         View Details
       </Link>

@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import { useFoodsStore } from "../../stores/useFoodsStore";
 import { useEffect } from "react";
 import WindowLoader from "../../components/loaders/windowLoader/WindowLoader";
-import { container } from "../../utils/classNames";
+import { container, largeBtn } from "../../utils/classNames";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useRequestStore } from "../../stores/useRequestStore";
 import RequestFoodModal from "../../components/modals/RequestFoodModal";
@@ -104,8 +104,8 @@ export default function FoodDetailsPage() {
           </div>
           <div className="flex gap-3 mt-16">
             {isMyFood || food_status === "Donated" ? null : (
-              <button onClick={openRequestModal} className="btn btn-primary">
-                Request Food
+              <button onClick={openRequestModal} className={largeBtn}>
+                Request This Plate
               </button>
             )}
           </div>

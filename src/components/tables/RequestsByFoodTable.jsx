@@ -194,13 +194,13 @@ export default function RequestsByFoodTable({ foodId, isLoading }) {
                         ) : (
                           <div className="flex gap-3">
                             <button
-                              className="btn btn-xs btn-success"
+                              className="btn btn-sm btn-success rounded-full"
                               onClick={handleAccept}
                             >
                               Accept
                             </button>
                             <button
-                              className="btn btn-xs btn-error btn-soft"
+                              className="btn btn-sm btn-error btn-soft rounded-full"
                               onClick={handleReject}
                             >
                               Reject

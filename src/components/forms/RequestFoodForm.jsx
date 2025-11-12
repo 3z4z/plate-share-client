@@ -92,8 +92,8 @@ export default function RequestFoodForm({ id }) {
         className="textarea w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-100"
         {...register("requestReason")}
       ></textarea>
-      <div className="text-center">
-        <button className="mt-3 btn btn-primary w-max px-8 rounded-full">
+      <div className="text-center mt-8">
+        <button className="btn btn-primary w-max px-8 rounded-full">
           Request Now
         </button>
       </div>
