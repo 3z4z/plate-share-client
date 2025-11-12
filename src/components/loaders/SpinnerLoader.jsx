@@ -1,3 +1,3 @@
-export default function SpinnerLoader({ color }) {
-  return <div className={`loading loading-spinner loading-sm ${color}`}></div>;
+export default function SpinnerLoader({ size, color }) {
+  return <div className={`loading loading-spinner ${size} ${color}`}></div>;
 }

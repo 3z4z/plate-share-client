@@ -113,7 +113,7 @@ export default function LoginPage() {
             onClick={handleGoogleSignIn}
           >
             {isGoogleSigningIn ? (
-              <SpinnerLoader color={"text-gray-300"} />
+              <SpinnerLoader size={"loading-sm"} color={"text-gray-300"} />
             ) : (
               <FcGoogle className="text-xl me-1" />
             )}

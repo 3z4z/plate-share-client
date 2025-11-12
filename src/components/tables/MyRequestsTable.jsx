@@ -3,14 +3,15 @@ import CommonTitleComponent from "../common/CommonTitle";
 import { useFoodsStore } from "../../stores/useFoodsStore";
 import { useEffect, useState } from "react";
 import RequestDeleteConfirmModal from "../modals/RequestDeleteConfirmModal";
+import cookingIcon from "../../assets/cooking.png";
 
 export default function MyRequestsTable({ myRequests }) {
-  const { availableFoods, setAvailableFoods, isFoodsLoading } = useFoodsStore();
+  const { foods, setFoods, isFoodsLoading } = useFoodsStore();
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState();
   useEffect(() => {
-    setAvailableFoods();
-  }, [setAvailableFoods]);
+    setFoods();
+  }, [setFoods]);
   return (
     <div className="px-3 max-w-[1600px] mx-auto ">
       <CommonTitleComponent title={"My Requested Plates"} margins={"my-7"} />
@@ -34,9 +35,7 @@ export default function MyRequestsTable({ myRequests }) {
             {myRequests.length > 0 ? (
               myRequests.map((request, index) => {
                 const { requestStatus, foodId } = request;
-                const requestedFood = availableFoods.find(
-                  (food) => food._id === foodId
-                );
+                const requestedFood = foods.find((food) => food._id === foodId);
                 return (
                   <tr key={index}>
                     <td className="font-bold ps-5">{index + 1}</td>
@@ -48,8 +47,7 @@ export default function MyRequestsTable({ myRequests }) {
                               src={
                                 isFoodsLoading
                                   ? "https://picsum.photos/200/300.jpg"
-                                  : requestedFood?.image ||
-                                    "https://via.placeholder.com/50"
+                                  : requestedFood?.image || cookingIcon
                               }
                               alt=""
                               className="w-full h-full object-cover"

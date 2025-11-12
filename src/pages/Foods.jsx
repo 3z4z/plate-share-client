@@ -3,6 +3,8 @@ import { useFoodsStore } from "../stores/useFoodsStore";
 import FoodCard from "../components/common/FoodCard";
 import { container } from "../utils/classNames";
 import { Link } from "react-router";
+import SpinnerLoader from "../components/loaders/SpinnerLoader";
+import CardSkeletonLoader from "../components/loaders/CardSkeletonLoader";
 
 export default function FoodsPage() {
   const { availableFoods, setAvailableFoods, isFoodsLoading } = useFoodsStore();
@@ -17,9 +19,13 @@ export default function FoodsPage() {
   return (
     <div className={container}>
       <div className="flex justify-between my-10 flex-wrap gap-4">
-        <h1 className="sm:text-3xl text-2xl">
-          {isFoodsLoading ? "..." : availableFoods.length} Foods Available to
-          get
+        <h1 className="sm:text-3xl text-2xl flex items-center gap-2">
+          {isFoodsLoading ? (
+            <SpinnerLoader color={"text-base-content"} size={"loading-xl"} />
+          ) : (
+            <span>{availableFoods.length}</span>
+          )}
+          <span>Foods Available to get</span>
         </h1>
         <div className="flex gap-2">
           <Link to={"/my-foods"} className="btn btn-primary px-6 rounded-full">
@@ -33,15 +39,16 @@ export default function FoodsPage() {
           </Link>
         </div>
       </div>
-      {isFoodsLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 sm:max-w-full max-w-sm mx-auto gap-4">
-          {availableFoods.map((food) => {
+
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 sm:max-w-full max-w-sm mx-auto gap-4">
+        {isFoodsLoading ? (
+          <CardSkeletonLoader />
+        ) : (
+          availableFoods.map((food) => {
             return <FoodCard food={food} key={food._id} />;
-          })}
-        </div>
-      )}
+          })
+        )}
+      </div>
     </div>
   );
 }

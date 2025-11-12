@@ -138,7 +138,9 @@ export default function RegisterPage() {
             disabled={isSigningIn || !isValid}
             className="btn btn-primary rounded-full mt-3"
           >
-            {isSigningIn && <SpinnerLoader color={"text-gray-300"} />}
+            {isSigningIn && (
+              <SpinnerLoader size={"loading-sm"} color={"text-gray-300"} />
+            )}
             Register
           </button>
           <div className="divider">Or</div>

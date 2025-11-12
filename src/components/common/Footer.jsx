@@ -24,8 +24,8 @@ export default function FooterComponent() {
   return (
     <footer className="mt-28 bg-base-300">
       <div className={container}>
-        <div className="grid lg:grid-cols-4 sm:grid-cols-2 lg:gap-6 gap-10 py-16">
-          <div>
+        <div className="grid lg:grid-cols-9 sm:grid-cols-2 lg:gap-6 gap-10 py-16">
+          <div className="lg:col-span-2">
             <BrandLogoComponent />
             <p className="mt-6 w-[92.5%]">
               Join PlateShare and turn your extra meals into moments of joy,
@@ -33,7 +33,7 @@ export default function FooterComponent() {
               and smiles every day.
             </p>
           </div>
-          <div>
+          <div className="lg:col-span-2">
             <h5 className="text-xl text-secondary">Important Links</h5>
             <ul className="mt-8 flex flex-col gap-3">
               {importantLinks.map((link, index) => (
@@ -48,7 +48,7 @@ export default function FooterComponent() {
               ))}
             </ul>
           </div>
-          <div>
+          <div className="lg:col-span-2">
             <h5 className="text-xl text-secondary">Social Links</h5>
             <ul className="mt-8 flex flex-col gap-3">
               {socialLinks.map((link, index) => (
@@ -66,29 +66,29 @@ export default function FooterComponent() {
               ))}
             </ul>
           </div>
-          <div>
+          <div className="lg:col-span-2">
             <h5 className="text-xl text-secondary">Get our App</h5>
-            <div className="flex gap-3 flex-wrap mt-8">
-              <button className="btn btn-neutral h-auto py-2.5 px-6 gap-3 rounded-md">
+            <div className="flex gap-3 mt-8">
+              <button className="btn btn-neutral h-auto py-2.5 px-3 gap-3 rounded-md">
                 <img
                   src={playStoreLogo}
                   alt=""
                   className="h-8 w-8 object-contain"
                 />
                 <div className="flex flex-col items-start">
-                  <span className="text-[10px] -mb-1">Get it on</span>
-                  <span className="text-lg">Google Play</span>
+                  <span className="text-[8px] -mb-1">Get it on</span>
+                  <span>Google Play</span>
                 </div>
               </button>
-              <button className="btn btn-neutral h-auto py-2.5 px-6 gap-3 rounded-md">
+              <button className="btn btn-neutral h-auto py-2.5 px-3 gap-3 rounded-md">
                 <img
                   src={appStoreLogo}
                   alt=""
                   className="h-8 w-8 object-contain"
                 />
                 <div className="flex flex-col items-start">
-                  <span className="text-[10px] -mb-1">Download from the</span>
-                  <span className="text-lg">App Store</span>
+                  <span className="text-[8px] -mb-1">Download from the</span>
+                  <span>App Store</span>
                 </div>
               </button>
             </div>

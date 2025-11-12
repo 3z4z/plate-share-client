@@ -9,7 +9,7 @@ import { hotToastInfoConfig } from "../../configs/toastConfigs";
 export default function RequestsByFoodTable({ foodId }) {
   const { setRequestsByFood, requestsByFood, manageARequest } =
     useRequestStore();
-  const { setFood, food } = useFoodsStore();
+  const { setFood, food, setFoods } = useFoodsStore();
   const { user } = useAuthStore();
   const axios = useAxios();
   useEffect(() => {
@@ -60,6 +60,7 @@ export default function RequestsByFoodTable({ foodId }) {
                       });
                       setFood(foodId);
                       setRequestsByFood(foodId);
+                      setFoods();
 
                       manageARequest(requestId, action);
                       toast.success(`Accepted ${requesterName}'s request!`);
@@ -75,6 +76,8 @@ export default function RequestsByFoodTable({ foodId }) {
                       });
                       setFood(foodId);
                       setRequestsByFood(foodId);
+                      setFoods();
+
                       manageARequest(requestId, action);
                       toast.error(
                         `Rejected ${requesterName}'s request!`,

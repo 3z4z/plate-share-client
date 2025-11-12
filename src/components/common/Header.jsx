@@ -70,7 +70,7 @@ export default function HeaderComponent() {
         </div>
         <div className="lg:w-1/4 flex justify-end items-center gap-3">
           {isAuthLoading ? (
-            <SpinnerLoader color={"text-primary"} />
+            <SpinnerLoader size={"loading-lg"} color={"text-primary"} />
           ) : !user ? (
             <>
               <div
