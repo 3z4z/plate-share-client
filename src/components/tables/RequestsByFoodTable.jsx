@@ -5,8 +5,11 @@ import { useFoodsStore } from "../../stores/useFoodsStore";
 import useAxios from "../../hooks/useAxios";
 import toast from "react-hot-toast";
 import { hotToastInfoConfig } from "../../configs/toastConfigs";
+import FieldSkeletonLoader from "../loaders/FieldSkeletonLoader";
+import SpinnerLoader from "../loaders/SpinnerLoader";
+import cookingIcon from "../../assets/cooking.png";
 
-export default function RequestsByFoodTable({ foodId }) {
+export default function RequestsByFoodTable({ foodId, isLoading }) {
   const { setRequestsByFood, requestsByFood, manageARequest } =
     useRequestStore();
   const { setFood, food, setFoods } = useFoodsStore();
@@ -24,8 +27,22 @@ export default function RequestsByFoodTable({ foodId }) {
     isMyFood && (
       <div className="mt-16">
         <h5 className="text-xl mb-5">
-          <span>Requests for your plate:</span>
-          <span className="text-primary ms-1">{requestsByFood.length}</span>
+          {isLoading ? (
+            <div className="max-w-60">
+              <FieldSkeletonLoader />
+            </div>
+          ) : (
+            <>
+              <span>Requests for your plate:</span>
+              <span className="text-primary ms-1">
+                {isLoading ? (
+                  <SpinnerLoader size={"loading-xl"} color={"text-primary"} />
+                ) : (
+                  requestsByFood.length
+                )}
+              </span>
+            </>
+          )}
         </h5>
         <div className="overflow-x-auto rounded-box border border-base-content/5 bg-white">
           <table className="table">
@@ -89,59 +106,107 @@ export default function RequestsByFoodTable({ foodId }) {
                   };
                   return (
                     <tr key={index}>
-                      <td className="w-1/16">{index + 1}</td>
+                      <td className="w-1/16">
+                        {isLoading ? <FieldSkeletonLoader /> : index + 1 || "#"}
+                      </td>
                       <td className="w-3/16">
                         <div className="flex items-center gap-3">
                           <div>
-                            <figure className="w-10 h-10 rounded-sm flex items-center justify-center border border-base-300 bg-gray-300 overflow-hidden">
-                              <img
-                                src={requesterImage}
-                                alt=""
-                                className="w-full h-full object-cover"
-                              />
-                            </figure>
+                            {isLoading ? (
+                              <SpinnerLoader size={"loading-xl"} />
+                            ) : (
+                              <figure className="w-10 h-10 rounded-sm flex items-center justify-center border border-base-300 bg-gray-300 overflow-hidden">
+                                <img
+                                  src={requesterImage || cookingIcon}
+                                  alt=""
+                                  className="w-full h-full object-cover"
+                                />
+                              </figure>
+                            )}
                           </div>
-                          <div>
-                            <p className="text-secondary font-medium">
-                              {requesterName}
-                            </p>
-                            <p className="text-xs">{requesterEmail}</p>
+                          <div className="w-full">
+                            <div
+                              className={`text-secondary font-medium ${
+                                isLoading ? "mb-1" : ""
+                              }`}
+                            >
+                              {isLoading ? (
+                                <FieldSkeletonLoader />
+                              ) : (
+                                <p>{requesterName || "Unknown"}</p>
+                              )}
+                            </div>
+                            <div>
+                              {isLoading ? (
+                                <FieldSkeletonLoader />
+                              ) : (
+                                <p className="text-xs">
+                                  {requesterEmail || "Unknown"}
+                                </p>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </td>
                       <td className="w-4/16 min-w-48">
-                        <p>{location}</p>
-                        <p className="text-secondary text-xs">{contactNo}</p>
-                      </td>
-                      <td className="w-4/16 min-w-60">{requestReason}</td>
-                      <td className="w-1/8 text-center">
-                        <div
-                          className={`badge badge-sm ${
-                            requestStatus === "Pending"
-                              ? "badge-warning"
-                              : requestStatus === "Accepted"
-                              ? "badge-success"
-                              : "badge-error"
-                          }`}
-                        >
-                          {requestStatus}
+                        <div className={`${isLoading ? "mb-1" : ""}`}>
+                          {isLoading ? (
+                            <FieldSkeletonLoader />
+                          ) : (
+                            <p>{location || "Unknown"}</p>
+                          )}
                         </div>
+                        <div className="text-secondary text-xs">
+                          {isLoading ? (
+                            <FieldSkeletonLoader />
+                          ) : (
+                            <p>{contactNo || "Unknown"}</p>
+                          )}
+                        </div>
+                      </td>
+                      <td className="w-4/16 min-w-60">
+                        {isLoading ? (
+                          <FieldSkeletonLoader />
+                        ) : (
+                          requestReason || "Unknown"
+                        )}
+                      </td>
+                      <td className="w-1/8 text-center">
+                        {isLoading ? (
+                          <FieldSkeletonLoader />
+                        ) : (
+                          <div
+                            className={`badge badge-sm ${
+                              requestStatus === "Pending"
+                                ? "badge-warning"
+                                : requestStatus === "Accepted"
+                                ? "badge-success"
+                                : "badge-error"
+                            }`}
+                          >
+                            {requestStatus || "Unknown"}
+                          </div>
+                        )}
                       </td>
                       <td className="w-1/8">
-                        <div className="flex gap-3">
-                          <button
-                            className="btn btn-xs btn-success"
-                            onClick={handleAccept}
-                          >
-                            Accept
-                          </button>
-                          <button
-                            className="btn btn-xs btn-error btn-soft"
-                            onClick={handleReject}
-                          >
-                            Reject
-                          </button>
-                        </div>
+                        {isLoading ? (
+                          <FieldSkeletonLoader />
+                        ) : (
+                          <div className="flex gap-3">
+                            <button
+                              className="btn btn-xs btn-success"
+                              onClick={handleAccept}
+                            >
+                              Accept
+                            </button>
+                            <button
+                              className="btn btn-xs btn-error btn-soft"
+                              onClick={handleReject}
+                            >
+                              Reject
+                            </button>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   );

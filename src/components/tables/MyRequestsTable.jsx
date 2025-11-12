@@ -32,7 +32,7 @@ export default function MyRequestsTable({ myRequests }) {
             const requestedFood = foods.find((food) => food._id === foodId);
             return (
               <tr key={index} className="odd:bg-base-100 *:py-1.5">
-                <td className="font-bold ps-5">{index + 1}</td>
+                <td className="font-bold ps-5">{index + 1 || "#"}</td>
                 <td>
                   <div className="flex gap-3 items-center">
                     <div>
@@ -94,7 +94,7 @@ export default function MyRequestsTable({ myRequests }) {
                           : "badge-error"
                       }`}
                     >
-                      {requestStatus}
+                      {requestStatus || "Unknown"}
                     </div>
                   )}
                 </td>

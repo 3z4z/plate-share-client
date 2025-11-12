@@ -109,7 +109,7 @@ export default function FoodDetailsPage() {
             )}
           </div>
           <RequestFoodModal id={id} />
-          <RequestsByFoodTable foodId={id} />
+          <RequestsByFoodTable isLoading={isFoodsLoading} foodId={id} />
         </div>
       ) : (
         <p className="text-error text-xl py-10 text-center">

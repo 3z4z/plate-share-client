@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
-import CommonTitleComponent from "../common/CommonTitle";
 import { Link } from "react-router";
 import { useState } from "react";
 import FoodDeleteConfirmModal from "../modals/FoodDeleteConfirmModal";
 import SpinnerLoader from "../loaders/SpinnerLoader";
 import FieldSkeletonLoader from "../loaders/FieldSkeletonLoader";
+import cookingIcon from "../../assets/cooking.png";
 
 export default function FoodsTable({ foods, isLoading }) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -40,7 +40,7 @@ export default function FoodsTable({ foods, isLoading }) {
                   {isLoading ? (
                     <SpinnerLoader size={"loading-sm"} />
                   ) : (
-                    index + 1
+                    index + 1 || "#"
                   )}
                 </td>
                 <td>
@@ -54,7 +54,7 @@ export default function FoodsTable({ foods, isLoading }) {
                       ) : (
                         <figure className="w-10 h-10 rounded-sm flex items-center justify-center border border-base-300 bg-gray-300 overflow-hidden">
                           <img
-                            src={image}
+                            src={image || cookingIcon}
                             alt=""
                             className="w-full h-full object-cover"
                           />
@@ -64,7 +64,7 @@ export default function FoodsTable({ foods, isLoading }) {
                     {isLoading ? (
                       <FieldSkeletonLoader />
                     ) : (
-                      <span className="font-medium">{name}</span>
+                      <span className="font-medium">{name || "Unknown"}</span>
                     )}
                   </div>
                 </td>
@@ -72,11 +72,11 @@ export default function FoodsTable({ foods, isLoading }) {
                   {isLoading ? (
                     <FieldSkeletonLoader />
                   ) : (
-                    dayjs(created_at).format("DD MMM, YYYY")
+                    dayjs(created_at).format("DD MMM, YYYY") || "Unknown"
                   )}
                 </td>
                 <td className="text-center">
-                  {isLoading ? <FieldSkeletonLoader /> : quantity}
+                  {isLoading ? <FieldSkeletonLoader /> : quantity || "Unknown"}
                 </td>
                 <td className="text-center">
                   {isLoading ? (
@@ -89,7 +89,7 @@ export default function FoodsTable({ foods, isLoading }) {
                           : "badge-warning"
                       }`}
                     >
-                      {food_status}
+                      {food_status || "Unknown"}
                     </div>
                   )}
                 </td>
