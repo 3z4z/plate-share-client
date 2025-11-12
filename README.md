@@ -59,7 +59,7 @@
 
 ```bash
 git clone https://github.com/3z4z/plate-share-client
-cd plate-share
+cd plate-share-client
 npm install
 npm run dev
 ```
