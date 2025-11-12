@@ -92,7 +92,11 @@ export default function FoodDetailsPage() {
               {donor_image ? (
                 <div className="flex items-center gap-4 flex-wrap">
                   <figure className="sm:w-26 sm:h-26 w-12 h-12 rounded-full overflow-hidden border-3 border-primary ring-6 ring-primary/25">
-                    <img src={donor_image} alt="" />
+                    <img
+                      src={donor_image}
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
                   </figure>
                   <div>
                     <p className="font-bold text-primary sm:text-xl text-lg mb-1">
@@ -173,7 +177,7 @@ export default function FoodDetailsPage() {
           {food_status ? (
             <>
               <div className="flex gap-3 mt-16">
-                {isMyFood || food_status === "Donated" ? null : (
+                {isMyFood ? null : (
                   <button onClick={openRequestModal} className={largeBtn}>
                     Request This Plate
                   </button>

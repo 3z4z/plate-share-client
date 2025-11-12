@@ -1,14 +1,19 @@
 import dayjs from "dayjs";
 import { Link } from "react-router";
-import { useState } from "react";
-import FoodDeleteConfirmModal from "../modals/FoodDeleteConfirmModal";
 import SpinnerLoader from "../loaders/SpinnerLoader";
 import FieldSkeletonLoader from "../loaders/FieldSkeletonLoader";
 import cookingIcon from "../../assets/cooking.png";
 import NoTableDataComponent from "../common/NoTableData";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+import useAxios from "../../hooks/useAxios";
+import { useFoodsStore } from "../../stores/useFoodsStore";
+import toast from "react-hot-toast";
 
 export default function FoodsTable({ foods, isLoading }) {
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const MySwal = withReactContent(Swal);
+  const axios = useAxios();
+  const { deleteFood } = useFoodsStore();
   return (
     <>
       {foods.length > 0 ? (
@@ -33,9 +38,6 @@ export default function FoodsTable({ foods, isLoading }) {
                 quantity,
                 food_status,
               } = food;
-              const handleDeleteModalOpen = () => {
-                setIsDeleteModalOpen(true);
-              };
               return (
                 <tr
                   data-aos="fade-top"
@@ -123,16 +125,41 @@ export default function FoodsTable({ foods, isLoading }) {
                           Edit
                         </Link>
                         <button
-                          onClick={handleDeleteModalOpen}
+                          onClick={async () => {
+                            const result = await MySwal.fire({
+                              title: "Are you sure?",
+                              text: `You are about to delete "${
+                                name || "Unknown"
+                              }".`,
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#d33",
+                              cancelButtonColor: "#3085d6",
+                              confirmButtonText: "Delete",
+                              cancelButtonText: "Cancel",
+                              reverseButtons: true,
+                            });
+
+                            if (result.isConfirmed) {
+                              try {
+                                const res = await axios.delete(`/foods/${id}`);
+                                if (res.status === 200) {
+                                  deleteFood(id);
+                                  toast.success("Food deleted successfully!");
+                                } else {
+                                  toast.error("Something went wrong!");
+                                }
+                              } catch (err) {
+                                toast.error(
+                                  err.response?.data?.message || "Server error!"
+                                );
+                              }
+                            }
+                          }}
                           className="btn btn-error btn-soft btn-sm rounded-full"
                         >
                           Delete
                         </button>
-                        <FoodDeleteConfirmModal
-                          setIsDeleteModalOpen={setIsDeleteModalOpen}
-                          isDeleteModalOpen={isDeleteModalOpen}
-                          id={id}
-                        />
                       </div>
                     )}
                   </td>
