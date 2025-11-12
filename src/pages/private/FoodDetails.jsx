@@ -155,7 +155,7 @@ export default function FoodDetailsPage() {
             <div className="flex md:justify-end justify-center order-1 md:order-2">
               {image ? (
                 <figure
-                  className="md:max-w-lg max-w-md h-max md:aspect-square aspect-[5/3.5] border-3 ring-8 border-secondary ring-secondary/25 rounded-2xl overflow-hidden"
+                  className="w-full bg-base-200 md:max-w-lg max-w-md h-max md:aspect-square aspect-[5/3.5] border-3 ring-8 border-secondary ring-secondary/25 rounded-2xl overflow-hidden"
                   data-aos="fade-left"
                   data-aos-delay="500"
                 >
