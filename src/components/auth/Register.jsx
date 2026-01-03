@@ -70,7 +70,7 @@ export default function RegisterPage() {
             <span className="me-1">Already a member?</span>
             <Link
               to={"/auth/login"}
-              className="link link-hover link-accent font-semibold"
+              className="link link-hover link-base-content font-semibold"
             >
               Login Now
             </Link>
@@ -140,7 +140,10 @@ export default function RegisterPage() {
             className="btn btn-primary rounded-full mt-3"
           >
             {isSigningIn && (
-              <SpinnerLoader size={"loading-sm"} color={"text-gray-300"} />
+              <SpinnerLoader
+                size={"loading-sm"}
+                color={"text-base-content/20"}
+              />
             )}
             Register
           </button>
@@ -149,10 +152,10 @@ export default function RegisterPage() {
             disabled={isGoogleSigningIn}
             onClick={handleGoogleSignIn}
             type="button"
-            className="btn btn-neutral btn-outline mb-3 rounded-full border-accent/20"
+            className="btn btn-accent mb-3 rounded-full border-accent/20"
           >
             {isGoogleSigningIn ? (
-              <SpinnerLoader color={"text-gray-300"} />
+              <SpinnerLoader color={"text-base-content/20"} />
             ) : (
               <FcGoogle className="text-xl me-1" />
             )}

@@ -23,7 +23,7 @@ export default function MyRequestsTable({ myRequests }) {
     <>
       {myRequests.length > 0 ? (
         <table className="table">
-          <thead className="bg-base-200">
+          <thead className="bg-base-300">
             <tr>
               <th className="w-1/16">Sl No.</th>
               <th className="w-4/16">Requested Foods</th>
@@ -41,7 +41,7 @@ export default function MyRequestsTable({ myRequests }) {
                 <tr
                   data-aos="fade-top"
                   key={index}
-                  className="even:bg-base-100 *:py-1.5"
+                  className="even:bg-base-200 *:py-1.5"
                 >
                   <td className="font-bold ps-5">{index + 1 || "#"}</td>
                   <td>

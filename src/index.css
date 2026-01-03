@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-@import "./styles/datepicker.css";
 * {
   font-family: "Poppins", sans-serif;
 }
@@ -105,13 +104,13 @@ a.btn {
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
-  name: "mytheme";
-  default: true; /* set as default */
-  prefersdark: false; /* set as default dark mode (prefers-color-scheme:dark) */
-  color-scheme: light; /* color of browser-provided UI */
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
 
   --color-base-100: #fdf9f7;
-  --color-base-200: #ede4d8;
+  --color-base-200: #f3ebe2;
   --color-base-300: #ebdecc;
   --color-primary: #fc991e;
   --color-base-content: #111433;
@@ -132,10 +131,40 @@ a.btn {
   --color-error: #dc3545;
   --color-error-content: #f5f5f5;
 }
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: false;
+  color-scheme: dark;
 
-@theme {
-  --primary-soft: #fae5ca;
-  --secondary-soft: #cff8fc;
+  --color-base-100: #0e0f14;
+  --color-base-200: #1a1b22;
+  --color-base-300: #23252f;
+
+  --color-base-content: #f2f2f7;
+
+  --color-primary: #fc991e;
+  --color-primary-content: #0f0f11;
+
+  --color-secondary: #1fa8b8;
+  --color-secondary-content: #0a0f10;
+
+  --color-accent: #f6f4ef;
+  --color-accent-content: #0f1012;
+
+  --color-neutral: #0c0c10;
+  --color-neutral-content: #eaeaea;
+
+  --color-info: #2ac7dd;
+  --color-info-content: #101416;
+
+  --color-success: #40c463;
+  --color-success-content: #0e1510;
+
+  --color-warning: #f2c037;
+  --color-warning-content: #0f0d09;
+
+  --color-error: #e05959;
+  --color-error-content: #140c0c;
 }
 
 @layer base {

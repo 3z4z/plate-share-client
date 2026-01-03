@@ -11,6 +11,7 @@ import { useFoodsStore } from "../../stores/useFoodsStore";
 import toast from "react-hot-toast";
 
 export default function FoodsTable({ foods, isLoading }) {
+  console.log("foods", foods);
   const MySwal = withReactContent(Swal);
   const axios = useAxios();
   const { deleteFood } = useFoodsStore();
@@ -18,11 +19,11 @@ export default function FoodsTable({ foods, isLoading }) {
     <>
       {foods.length > 0 ? (
         <table className="table">
-          <thead className="bg-base-200">
+          <thead className="bg-base-300">
             <tr>
               <th className="w-1/16">Sl No.</th>
               <th className="w-6/16">Name</th>
-              <th className="w-2/16">Created On</th>
+              <th className="w-2/16">Expiry date</th>
               <th className="w-2/16 text-center">Quantity</th>
               <th className="w-2/16 text-center">Availability</th>
               <th className="w-3/16 text-center">Actions</th>
@@ -34,7 +35,7 @@ export default function FoodsTable({ foods, isLoading }) {
                 _id: id,
                 name,
                 image,
-                created_at,
+                expire_date,
                 quantity,
                 food_status,
               } = food;
@@ -42,7 +43,7 @@ export default function FoodsTable({ foods, isLoading }) {
                 <tr
                   data-aos="fade-top"
                   key={index}
-                  className="even:bg-base-100 *:py-1.5"
+                  className="even:bg-base-200 *:py-1.5"
                 >
                   <td className="font-bold ps-5">
                     {isLoading ? (
@@ -81,8 +82,10 @@ export default function FoodsTable({ foods, isLoading }) {
                   <td>
                     {isLoading ? (
                       <FieldSkeletonLoader />
+                    ) : expire_date ? (
+                      dayjs(expire_date).format("DD MMM, YYYY")
                     ) : (
-                      dayjs(created_at).format("DD MMM, YYYY") || "Unknown"
+                      "Unknown"
                     )}
                   </td>
                   <td className="text-center">

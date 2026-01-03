@@ -23,11 +23,11 @@ export default function FoodCard({ food }) {
       data-aos="fade-up"
       className={`flex flex-col justify-between ${
         pathname.includes("foods") ? "p-4" : "p-6 "
-      } rounded-xl shadow bg-white transition-all duration-300 hover:shadow-lg group hover:bg-secondary/5 cursor-pointer`}
+      } rounded-xl shadow bg-base-200 transition-all duration-300 hover:shadow-lg group hover:bg-secondary/5 cursor-pointer`}
     >
       <div>
-        <figure className="rounded-xl border border-gray-100 w-full aspect-[5/3.5] overflow-hidden flex items-center justify-center relative">
-          <div className="badge bg-white badge-sm font-semibold text-success absolute top-2 right-2">
+        <figure className="rounded-xl border border-base-content/15 w-full aspect-[5/3.5] overflow-hidden flex items-center justify-center relative">
+          <div className="badge bg-base-200 badge-sm font-semibold text-success absolute top-2 right-2">
             {food_status}
           </div>
           <img src={image} alt="" className="object-cover h-full w-full" />

@@ -5,6 +5,7 @@ import HeaderComponent from "../components/common/Header";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "../styles/swal.css";
 
 export default function HomeLayout() {
   AOS.init();

@@ -2,13 +2,14 @@ import { useFoodsStore } from "../../stores/useFoodsStore";
 import CommonTitleComponent from "../../components/common/CommonTitle";
 import { useAuthStore } from "../../stores/useAuthStore";
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useAxios from "../../hooks/useAxios";
 import FoodForm from "../../components/forms/FoodForm";
 
 export default function AddFoodPage() {
   const { addNewFood } = useFoodsStore();
+  const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuthStore();
   const axios = useAxios();
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function AddFoodPage() {
     });
   }, []);
   const handleAddFood = async (data) => {
+    setIsLoading(true);
     const payload = {
       ...data,
       created_at: new Date().toISOString(),
@@ -34,6 +36,8 @@ export default function AddFoodPage() {
       } else {
         toast.error("Failed to add food.");
       }
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -46,7 +50,12 @@ export default function AddFoodPage() {
         }
         margins={"my-10"}
       />
-      <FoodForm onSubmit={handleAddFood} food={{}} user={user} />
+      <FoodForm
+        onSubmit={handleAddFood}
+        food={{}}
+        user={user}
+        isLoading={isLoading}
+      />
     </section>
   );
 }

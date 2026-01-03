@@ -6,15 +6,29 @@ import userImg from "../../assets/user.png";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
 import { navLinks } from "../../utils/navLinks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthStore } from "../../stores/useAuthStore";
 import SpinnerLoader from "../loaders/SpinnerLoader";
-import { MdOutlineExitToApp } from "react-icons/md";
+import { MdOutlineExitToApp, MdOutlineWbSunny } from "react-icons/md";
 import { PiBowlFood, PiGearSixBold } from "react-icons/pi";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
+import { toggleTheme } from "../../utils/toggleTheme";
+import { IoMoonOutline } from "react-icons/io5";
 
 export default function HeaderComponent() {
   const { user, isAuthLoading, signOut } = useAuthStore();
+  const [themeState, setThemeState] = useState("light");
+  const htmlElement = document.documentElement;
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setThemeState(storedTheme);
+      htmlElement.setAttribute("data-theme", storedTheme);
+    } else {
+      setThemeState("light");
+      htmlElement.setAttribute("data-theme", "light");
+    }
+  }, [htmlElement]);
   const authActions = [
     { title: "Login", path: "/auth/login" },
     { title: "Register", path: "/auth/register" },
@@ -50,8 +64,8 @@ export default function HeaderComponent() {
   const [isDockOpen, setIsDockOpen] = useState(false);
 
   return (
-    <header className="bg-white relative z-50 py-15">
-      <div className="w-full bg-white/0 rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[4.3px] border border-white/30 fixed py-3.25 top-0 left-0">
+    <header className="bg-base-200 relative z-50 py-15">
+      <div className="w-full bg-base-200/0 rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[4.3px] border border-base-100/30 fixed py-3.25 top-0 left-0">
         <div
           className={`${container} md:w-full w-[calc(100%-1rem)]! py-5 flex items-center justify-between shadow-md rounded-full bg-base-100 border border-base-300/35`}
         >
@@ -93,7 +107,7 @@ export default function HeaderComponent() {
                     {authActions.map((link, index) => (
                       <li key={index}>
                         <Link
-                          className={`link link-hover py-2.5 hover:bg-white border border-transparent rounded-full ${
+                          className={`link link-hover py-2.5 hover:bg-base-200 border border-transparent rounded-full ${
                             link.path.includes("login")
                               ? "link-primary hover:border-primary active:border-primary"
                               : "link-secondary hover:border-secondary active:border-secondary"
@@ -104,6 +118,23 @@ export default function HeaderComponent() {
                         </Link>
                       </li>
                     ))}
+
+                    <button
+                      className="btn rounded-full"
+                      onClick={() =>
+                        toggleTheme(themeState, setThemeState, htmlElement)
+                      }
+                    >
+                      {themeState === "light" ? (
+                        <MdOutlineWbSunny className="size-4 mt-px" />
+                      ) : (
+                        <IoMoonOutline className="size-4 mt-px" />
+                      )}
+                      <span>
+                        Theme:
+                        <span className="ms-1 capitalize">{themeState}</span>
+                      </span>
+                    </button>
                   </ul>
                 </div>
                 <div className="lg:flex hidden justify-end gap-2">
@@ -120,48 +151,74 @@ export default function HeaderComponent() {
                       {link.title}
                     </Link>
                   ))}
+                  <button
+                    className="btn p-1 size-10 rounded-full"
+                    onClick={() =>
+                      toggleTheme(themeState, setThemeState, htmlElement)
+                    }
+                  >
+                    {themeState === "light" ? (
+                      <MdOutlineWbSunny className="size-5" />
+                    ) : (
+                      <IoMoonOutline className="size-5" />
+                    )}
+                  </button>
                 </div>
               </>
             ) : (
-              <div className="dropdown dropdown-end px-0">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn w-12 h-12 p-0 rounded-full"
-                >
-                  <img
-                    src={user.photoURL}
-                    alt=""
-                    className="w-9 h-9 rounded-full"
-                  />
+              <>
+                <div className="dropdown dropdown-end px-0">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn w-12 h-12 p-0 rounded-full"
+                  >
+                    <img
+                      src={user.photoURL}
+                      alt=""
+                      className="w-9 h-9 rounded-full"
+                    />
+                  </div>
+                  <ul
+                    tabIndex="-1"
+                    className="dropdown-content menu bg-base-200 border border-base-200 shadow-lg rounded-box z-1 w-60 p-2 gap-1"
+                  >
+                    {userActions.map((link, index) =>
+                      link.title.toLowerCase().includes("logout") ? (
+                        <button
+                          onClick={handleSignOut}
+                          key={index}
+                          className="btn bg-transparent rounded-full font-medium! border-0 shadow-none text-error hover:bg-error/15 py-2 px-4 justify-start"
+                        >
+                          {link.icon}
+                          {link.title}
+                        </button>
+                      ) : (
+                        <Link
+                          key={index}
+                          className="btn bg-transparent rounded-full font-medium! border-0 shadow-none hover:bg-primary/15 py-2 px-4 justify-start"
+                          to={link.path}
+                        >
+                          {link.icon}
+                          {link.title}
+                        </Link>
+                      )
+                    )}
+                  </ul>
                 </div>
-                <ul
-                  tabIndex="-1"
-                  className="dropdown-content menu bg-white border border-base-200 shadow-lg rounded-box z-1 w-60 p-2 gap-1"
+                <button
+                  className="btn p-1 size-10 rounded-full"
+                  onClick={() =>
+                    toggleTheme(themeState, setThemeState, htmlElement)
+                  }
                 >
-                  {userActions.map((link, index) =>
-                    link.title.toLowerCase().includes("logout") ? (
-                      <button
-                        onClick={handleSignOut}
-                        key={index}
-                        className="btn bg-transparent rounded-full font-medium! border-0 shadow-none text-error hover:bg-error/15 py-2 px-4 justify-start"
-                      >
-                        {link.icon}
-                        {link.title}
-                      </button>
-                    ) : (
-                      <Link
-                        key={index}
-                        className="btn bg-transparent rounded-full font-medium! border-0 shadow-none hover:bg-primary/15 py-2 px-4 justify-start"
-                        to={link.path}
-                      >
-                        {link.icon}
-                        {link.title}
-                      </Link>
-                    )
+                  {themeState === "light" ? (
+                    <MdOutlineWbSunny className="size-5" />
+                  ) : (
+                    <IoMoonOutline className="size-5" />
                   )}
-                </ul>
-              </div>
+                </button>
+              </>
             )}
           </div>
         </div>

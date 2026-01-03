@@ -53,7 +53,7 @@ export default function RequestFoodForm({ id }) {
       <input
         type="text"
         placeholder="Your name"
-        className="input w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-100"
+        className="input w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-200"
         disabled
         {...register("requesterName")}
       />
@@ -61,7 +61,7 @@ export default function RequestFoodForm({ id }) {
       <input
         type="email"
         placeholder="Your email"
-        className="input w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-100"
+        className="input w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-200"
         disabled
         {...register("requesterEmail")}
       />
@@ -69,7 +69,7 @@ export default function RequestFoodForm({ id }) {
       <input
         type="email"
         placeholder="https://..."
-        className="input w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-100"
+        className="input w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-200"
         disabled
         {...register("requesterImage")}
       />
@@ -77,19 +77,19 @@ export default function RequestFoodForm({ id }) {
       <input
         type="text"
         placeholder="Contact No"
-        className="input w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-100"
+        className="input w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-200"
         {...register("contactNo")}
       />
       <label className="mt-3">Location</label>
       <input
         type="text"
         placeholder="Location"
-        className="input w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-100"
+        className="input w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-200"
         {...register("location")}
       />
       <label className="mt-3">Why do you need this?</label>
       <textarea
-        className="textarea w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-100"
+        className="textarea w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-200"
         {...register("requestReason")}
       ></textarea>
       <div className="text-center mt-8">

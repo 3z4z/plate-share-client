@@ -42,7 +42,7 @@ export default function HowItWorksComponent() {
             data-aos-delay={step.delayDuration}
             data-aos="fade-right"
             key={index}
-            className="flex flex-col items-center text-center px-6 pt-7 pb-10 hover:bg-white hover:shadow-lg transition rounded-lg group"
+            className="flex flex-col items-center text-center px-6 pt-7 pb-10 hover:bg-base-200 hover:shadow-lg transition rounded-lg group"
           >
             <figure className="max-w-20 w-full mb-10">
               <img src={step.image} alt="" />

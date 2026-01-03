@@ -9,7 +9,7 @@ export default function RequestFoodModal({ id }) {
   };
   return (
     <dialog className={`modal ${isRequestModalOpen ? "modal-open" : ""}`}>
-      <div className="modal-box bg-white">
+      <div className="modal-box bg-base-100">
         <div className="text-end">
           <button
             className="transition-all hover:text-error cursor-pointer"

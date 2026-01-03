@@ -14,7 +14,7 @@ export default function HomePage() {
   }, []);
   return (
     <>
-      <section className="bg-white shadow">
+      <section className="bg-base-200 shadow">
         <HeroComponent />
       </section>
       <div className={container}>

@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import DatePicker from "react-datepicker";
 import { useEffect } from "react";
 
-export default function FoodForm({ food = {}, onSubmit, user }) {
+export default function FoodForm({ food = {}, onSubmit, user, isLoading }) {
   const {
     handleSubmit,
     register,
@@ -46,7 +46,7 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="fieldset max-w-2xl mx-auto bg-white pb-8 pt-10 px-12 rounded-lg shadow-lg"
+      className="fieldset max-w-2xl mx-auto bg-base-100 pb-8 pt-10 px-12 rounded-lg shadow-lg border border-base-200"
     >
       <fieldset disabled={food?._id && !isSameUser}>
         <div className="flex gap-3 sm:flex-nowrap flex-wrap mb-3">
@@ -56,7 +56,7 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
               type="text"
               placeholder="Donor Name"
               disabled
-              className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-100"
+              className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-200"
               {...register("donor_name")}
             />
             {errors.donor_name && (
@@ -71,7 +71,7 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
               type="email"
               disabled
               placeholder="Donor Email"
-              className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-100"
+              className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-200"
               {...register("donor_email")}
             />
           </div>
@@ -81,16 +81,17 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
           type="text"
           disabled
           placeholder="https://..."
-          className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-100"
+          className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-200"
           {...register("donor_image")}
         />
         <div className="flex sm:flex-nowrap flex-wrap gap-3 mb-3 mt-3">
           <div className="sm:flex-1 w-full">
             <label className="font-medium pb-2 inline-block">Food Name</label>
             <input
+              disabled={isLoading}
               type="text"
               placeholder="Cheeseburger"
-              className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-100"
+              className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-200"
               {...register("name", {
                 required: "Food Name is required!",
                 minLength: {
@@ -106,9 +107,10 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
           <div className="flex-1">
             <label className="font-medium pb-2 inline-block">Food Image</label>
             <input
+              disabled={isLoading}
               type="text"
               placeholder="https://..."
-              className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-100"
+              className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-200"
               {...register("image", {
                 required: "Food Image is required",
                 pattern: {
@@ -126,9 +128,10 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
           <div className="sm:w-[calc(50%-6px)] w-full md:max-w-36">
             <label className="font-medium pb-2 inline-block">Quantity</label>
             <input
+              disabled={isLoading}
               type="number"
               placeholder="10"
-              className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-100"
+              className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-200"
               {...register("quantity", {
                 required: "Quantity is Required!",
                 min: {
@@ -145,8 +148,9 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
           <div className="sm:w-[calc(50%-6px)] w-full md:flex-1">
             <label className="font-medium pb-2 inline-block">Food Status</label>
             <select
+              disabled={isLoading}
               defaultValue=""
-              className="select w-full bg-white border-accent/8 rounded-full disabled:bg-base-100"
+              className="select w-full bg-base-100 border-accent/8 rounded-full disabled:bg-base-200"
               {...register("food_status", {
                 required: "Food Status is Required",
                 validate: (value) =>
@@ -182,9 +186,10 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
               }}
               render={({ field }) => (
                 <DatePicker
+                  disabled={isLoading}
                   dateFormat={"dd/MM/YYYY"}
                   placeholderText="dd/MM/YYYY"
-                  className="input w-full bg-transparent border-accent/8 rounded-full disabled:bg-base-100"
+                  className="input w-full bg-transparent border-accent/8 rounded-full disabled:bg-base-200"
                   selected={field.value}
                   onChange={(date) => field.onChange(date)}
                 />
@@ -197,9 +202,10 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
         </div>
         <label className="font-medium">Pickup Location</label>
         <input
+          disabled={isLoading}
           type="text"
           placeholder="Jatrabari, Dhaka"
-          className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-100"
+          className="input rounded-full bg-transparent w-full border-accent/8 disabled:bg-base-200"
           {...register("pickup_location", {
             required: "Pickup Location is required!",
             validate: (value) =>
@@ -217,9 +223,10 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
         )}
         <label className="block font-medium mt-3">Additional Notes</label>
         <textarea
+          disabled={isLoading}
           placeholder="Add some description"
           rows={6}
-          className="textarea w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-100"
+          className="textarea w-full resize-none rounded-2xl bg-transparent border-accent/8 disabled:bg-base-200"
           {...register("description")}
         ></textarea>
         <div className="flex flex-col items-center mt-8">
@@ -227,6 +234,9 @@ export default function FoodForm({ food = {}, onSubmit, user }) {
             disabled={!isValid}
             className="btn btn-primary px-8 w-max rounded-full"
           >
+            {isLoading && (
+              <span className="loading loading-spinner text-base-content/20"></span>
+            )}
             {food?._id ? "Update Plate" : "Add Plate"}
           </button>
           {food?.id && !isSameUser && (

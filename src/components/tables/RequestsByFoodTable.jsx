@@ -50,9 +50,9 @@ export default function RequestsByFoodTable({ foodId, isLoading }) {
                   </>
                 )}
               </h5>
-              <div className="overflow-x-auto rounded-box border border-base-content/5 bg-white">
+              <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
                 <table className="table">
-                  <thead className="bg-base-200">
+                  <thead className="bg-base-300">
                     <tr>
                       <th className="w-1/16">Sl No.</th>
                       <th className="w-3/16">Requester Name</th>
@@ -112,7 +112,7 @@ export default function RequestsByFoodTable({ foodId, isLoading }) {
                       return (
                         <tr
                           data-aos="fade-top"
-                          className="even:bg-base-100 *:py-1.5"
+                          className="even:bg-base-200 *:py-1.5"
                           key={index}
                         >
                           <td className="w-1/16">

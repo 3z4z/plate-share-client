@@ -62,7 +62,7 @@ export default function LoginPage() {
             <span className="me-1">Don't have an account?</span>
             <Link
               to={"/auth/register"}
-              className="link link-hover link-accent font-semibold"
+              className="link link-hover link-base-content font-semibold"
             >
               Register
             </Link>
@@ -103,18 +103,21 @@ export default function LoginPage() {
             disabled={isSigningIn || !isValid}
             className="btn btn-primary rounded-full mt-3"
           >
-            {isSigningIn && <SpinnerLoader color={"text-gray-300"} />}
+            {isSigningIn && <SpinnerLoader color={"text-base-content/20"} />}
             Login
           </button>
           <div className="divider">Or</div>
           <button
             type="button"
             disabled={isGoogleSigningIn}
-            className="btn btn-neutral btn-outline mb-3 rounded-full border-accent/20"
+            className="btn btn-accent mb-3 rounded-full border-accent/20"
             onClick={handleGoogleSignIn}
           >
             {isGoogleSigningIn ? (
-              <SpinnerLoader size={"loading-sm"} color={"text-gray-300"} />
+              <SpinnerLoader
+                size={"loading-sm"}
+                color={"text-base-content/20"}
+              />
             ) : (
               <FcGoogle className="text-xl me-1" />
             )}

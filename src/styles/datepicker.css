@@ -1,20 +1,45 @@
+@reference '../index.css';
+
 .react-datepicker {
-  @apply shadow-lg;
-  border-color: #a5d3d8 !important;
+  @apply shadow-lg bg-base-100! border-base-300!;
 }
 
 .react-datepicker__header {
-  @apply py-3!;
-  background-color: #e9fdff !important;
-  border-bottom-color: #a5d3d8 !important;
+  @apply py-3 bg-base-200! border-b-base-300!;
 }
 
-.react-datepicker__current-month {
-  @apply text-secondary!;
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  @apply font-medium! text-primary!;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  @apply w-8! leading-8! text-base-content! hover:text-neutral!;
+}
+
+.react-datepicker__day--weekend {
+  @apply text-error! hover:text-error!;
+}
+
+.react-datepicker__day--outside-month,
+.react-datepicker__day--outside-month.react-datepicker__day--weekend {
+  @apply text-base-content/40! bg-transparent! hover:text-base-content/40!;
+}
+
+.react-datepicker__day--today {
+  @apply text-primary! rounded-sm! bg-base-200!;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__day--selected.react-datepicker__day--weekend {
+  @apply text-primary-content! bg-primary! hover:bg-primary! rounded-sm!;
 }
 
 .react-datepicker__navigation-icon::before {
-  @apply border-secondary!;
+  @apply border-primary!;
 }
 
 .react-datepicker__navigation {
@@ -22,37 +47,5 @@
 }
 
 .react-datepicker__triangle {
-  fill: #e9fdff !important;
-  stroke: #a5d3d8 !important;
-  color: #e9fdff !important;
-}
-
-.react-datepicker__day-name,
-.react-datepicker__day,
-.react-datepicker__time-name {
-  @apply w-8! leading-8!;
-}
-
-.react-datepicker__day--outside-month {
-  @apply text-gray-400!;
-}
-.react-datepicker__day--today {
-  @apply text-primary! rounded-sm!;
-  background: #fff3e2 !important;
-}
-.react-datepicker__day--keyboard-selected,
-.react-datepicker__day--selected {
-  @apply text-white! bg-primary! hover:bg-amber-600! rounded-sm!;
-}
-
-.react-datepicker__day--weekend:not(.react-datepicker__day--keyboard-selected) {
-  @apply text-error;
-}
-
-.react-datepicker__day--selected.react-datepicker__day--weekend {
-  @apply text-white! bg-primary! hover:bg-amber-600! rounded-sm!;
-}
-
-.react-datepicker__day-name {
-  @apply font-medium! text-secondary!;
+  @apply fill-base-200! stroke-base-300! text-base-200!;
 }

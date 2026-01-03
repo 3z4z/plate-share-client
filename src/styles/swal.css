@@ -1,0 +1,5 @@
+@reference '../index.css';
+
+.swal2-popup {
+  @apply bg-base-100 text-base-content;
+}

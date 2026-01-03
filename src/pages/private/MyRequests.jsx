@@ -28,7 +28,7 @@ export default function MyRequestsPage() {
             )}
           </span>
         </h5>
-        <div className="overflow-x-auto rounded-box border border-base-content/5 bg-white">
+        <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
           <MyRequestsTable myRequests={myRequests} />
         </div>
       </div>

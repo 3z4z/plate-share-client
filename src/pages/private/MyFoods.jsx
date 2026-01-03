@@ -31,7 +31,7 @@ export default function MyFoodsPage() {
           )}
         </span>
       </h5>
-      <div className="overflow-x-auto rounded-box border border-base-content/5 bg-white">
+      <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
         <FoodsTable foods={myFoods} isLoading={isFoodsLoading} />
       </div>
     </div>
