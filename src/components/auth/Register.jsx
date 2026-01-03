@@ -24,18 +24,18 @@ export default function RegisterPage() {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      fullName: "",
+      name: "",
       email: "",
       password: "",
-      userImage: "",
+      image: "",
     },
   });
   const handleRegister = async (data) => {
     const { user, error } = await signUp(
-      data.fullName,
+      data.name,
       data.email,
       data.password,
-      data.userImage
+      data.image
     );
     if (user) {
       user && navigate(state || "/", { replace: true });
@@ -80,7 +80,7 @@ export default function RegisterPage() {
             type="text"
             className="input w-full bg-transparent border border-white/15 rounded-full"
             placeholder="John Doe"
-            {...register("fullName", {
+            {...register("name", {
               required: requiredMessage.name,
               minLength: {
                 value: 3,
@@ -88,20 +88,20 @@ export default function RegisterPage() {
               },
             })}
           />
-          {errors.fullName && (
-            <p className="text-error mb-3">{errors.fullName.message}</p>
+          {errors.name && (
+            <p className="text-error mb-3">{errors.name.message}</p>
           )}
           <label className="font-medium text-sm text-accent">Photo Url</label>
           <input
             type="text"
             className="input w-full bg-transparent border border-white/15 rounded-full"
             placeholder="https://..."
-            {...register("userImage", {
+            {...register("image", {
               required: requiredMessage.photoUrl,
             })}
           />
-          {errors.userImage && (
-            <p className="text-error mb-3">{errors.userImage.message}</p>
+          {errors.image && (
+            <p className="text-error mb-3">{errors.image.message}</p>
           )}
           <label className="font-medium text-sm text-accent">Email</label>
           <input

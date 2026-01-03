@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from "react-router";
-import CommonTitleComponent from "../../components/common/CommonTitle";
-import { useFoodsStore } from "../../stores/useFoodsStore";
+import CommonTitleComponent from "../../../components/common/CommonTitle";
+import { useFoodsStore } from "../../../stores/useFoodsStore";
 import { useEffect } from "react";
-import FoodForm from "../../components/forms/FoodForm";
-import { useAuthStore } from "../../stores/useAuthStore";
-import useAxios from "../../hooks/useAxios";
+import FoodForm from "../../../components/forms/FoodForm";
+import { useAuthStore } from "../../../stores/useAuthStore";
+import useAxios from "../../../hooks/useAxios";
 import toast from "react-hot-toast";
 
 export default function EditFoodPage() {

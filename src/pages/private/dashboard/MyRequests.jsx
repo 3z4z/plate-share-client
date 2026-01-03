@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useRequestStore } from "../../stores/useRequestStore";
-import { useAuthStore } from "../../stores/useAuthStore";
-import MyRequestsTable from "../../components/tables/MyRequestsTable";
-import CommonTitleComponent from "../../components/common/CommonTitle";
-import SpinnerLoader from "../../components/loaders/SpinnerLoader";
+import { useRequestStore } from "../../../stores/useRequestStore";
+import { useAuthStore } from "../../../stores/useAuthStore";
+import MyRequestsTable from "../../../components/tables/MyRequestsTable";
+import CommonTitleComponent from "../../../components/common/CommonTitle";
+import SpinnerLoader from "../../../components/loaders/SpinnerLoader";
 
 export default function MyRequestsPage() {
   const { user } = useAuthStore();
@@ -32,10 +32,6 @@ export default function MyRequestsPage() {
           <MyRequestsTable myRequests={myRequests} />
         </div>
       </div>
-      {/* {isRequestsLoading ? (
-        <p>Loading...</p>
-      ) : (
-      )} */}
     </>
   );
 }

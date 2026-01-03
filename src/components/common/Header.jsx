@@ -38,7 +38,7 @@ export default function HeaderComponent() {
   const userActions = [
     {
       title: "Add Food",
-      path: "/add-food",
+      path: "/dashboard/add-food",
       icon: <HiOutlineViewGridAdd className="text-xl" />,
     },
     {

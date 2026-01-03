@@ -10,9 +10,15 @@ export const useRequestStore = create((set, get) => ({
   isRequestsLoading: true,
   isRequestModalOpen: false,
   setIsRequestModalOpen: (value) => set({ isRequestModalOpen: value }),
-  setRequests: () => {
+  setRequests: async (email) => {
+    const { user } = useAuthStore.getState();
+    const token = await user.getIdToken();
     axiosInstance
-      .get("/requests")
+      .get(`/requests/all/${email}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((data) => set({ requests: data.data, isRequestsLoading: false }));
   },
   setRequestsByFood: async (id) => {
@@ -58,11 +64,21 @@ export const useRequestStore = create((set, get) => ({
   // For food owner
   manageARequest: (requestId, action) => {
     const { updateFoodStatus, foods } = useFoodsStore.getState();
-    set((state) => ({
-      requestsByFood: state.requestsByFood.map((req) =>
+
+    set((state) => {
+      const updatedRequestsByFood = state.requestsByFood.map((req) =>
         req._id === requestId ? { ...req, requestStatus: action } : req
-      ),
-    }));
+      );
+
+      const updatedRequests = state.requests.map((req) =>
+        req._id === requestId ? { ...req, requestStatus: action } : req
+      );
+
+      return {
+        requestsByFood: updatedRequestsByFood,
+        requests: updatedRequests,
+      };
+    });
 
     const currentRequest = get().requestsByFood.find(
       (req) => req._id === requestId

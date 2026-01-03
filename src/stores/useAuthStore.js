@@ -97,6 +97,31 @@ export const useAuthStore = create(
         }
       },
 
+      updateUser: async ({ name, image }) => {
+        try {
+          const currentUser = auth.currentUser;
+          if (!currentUser) throw new Error("No user is logged in.");
+
+          await updateProfile(currentUser, {
+            displayName: name || currentUser.displayName,
+            photoURL: image || currentUser.photoURL,
+          });
+
+          const updatedUser = {
+            uid: currentUser.uid,
+            email: currentUser.email,
+            displayName: name || currentUser.displayName,
+            photoURL: image || currentUser.photoURL,
+          };
+
+          set({ user: updatedUser });
+
+          return;
+        } catch (error) {
+          throw new Error(error.message);
+        }
+      },
+
       initAuthListener: () => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
           if (!currentUser) {

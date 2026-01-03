@@ -8,14 +8,18 @@ import LoginPage from "../components/auth/Login";
 import RegisterPage from "../components/auth/Register";
 import FoodDetailsPage from "../pages/private/FoodDetails";
 import PrivateRoute from "./PrivateRoutes";
-import AddFoodPage from "../pages/private/AddFood";
-import MyFoodsPage from "../pages/private/MyFoods";
-import EditFoodPage from "../pages/private/EditFood";
-import MyRequestsPage from "../pages/private/MyRequests";
+import AddFoodPage from "../pages/private/dashboard/AddFood";
+import MyFoodsPage from "../pages/private/dashboard/MyFoods";
+import EditFoodPage from "../pages/private/dashboard/EditFood";
+import MyRequestsPage from "../pages/private/dashboard/MyRequests";
 import AboutPage from "../pages/About";
 import OurMissionPage from "../pages/OurMission";
 import OurPoliciesPage from "../pages/Policies";
 import FaqPage from "../pages/faq";
+import DashboardLayout from "../layouts/DashboardLayout";
+import DbHomePage from "../pages/private/dashboard/Home";
+import ManageRequestsPage from "../pages/private/dashboard/ManageRequests";
+import MyProfilePage from "../pages/private/dashboard/MyProfile";
 export const router = createBrowserRouter([
   {
     path: "",
@@ -54,38 +58,6 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "add-food",
-        element: (
-          <PrivateRoute>
-            <AddFoodPage />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "my-foods",
-        element: (
-          <PrivateRoute>
-            <MyFoodsPage />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "my-requests",
-        element: (
-          <PrivateRoute>
-            <MyRequestsPage />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "edit-food/:id",
-        element: (
-          <PrivateRoute>
-            <EditFoodPage />
-          </PrivateRoute>
-        ),
-      },
     ],
   },
   {
@@ -104,6 +76,44 @@ export const router = createBrowserRouter([
       {
         path: "register",
         Component: RegisterPage,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        Component: DbHomePage,
+      },
+      {
+        path: "add-food",
+        Component: AddFoodPage,
+      },
+      {
+        path: "my-foods",
+        Component: MyFoodsPage,
+      },
+      {
+        path: "my-requests",
+        Component: MyRequestsPage,
+      },
+      {
+        path: "manage-requests",
+        Component: ManageRequestsPage,
+      },
+      {
+        path: "edit-food/:id",
+        Component: EditFoodPage,
+      },
+      {
+        path: "my-profile",
+        Component: MyProfilePage,
       },
     ],
   },

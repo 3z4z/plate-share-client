@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useFoodsStore } from "../../stores/useFoodsStore";
-import { useAuthStore } from "../../stores/useAuthStore";
-import FoodsTable from "../../components/tables/FoodsTable";
-import CommonTitleComponent from "../../components/common/CommonTitle";
-import SpinnerLoader from "../../components/loaders/SpinnerLoader";
+import { useFoodsStore } from "../../../stores/useFoodsStore";
+import { useAuthStore } from "../../../stores/useAuthStore";
+import FoodsTable from "../../../components/tables/FoodsTable";
+import CommonTitleComponent from "../../../components/common/CommonTitle";
+import SpinnerLoader from "../../../components/loaders/SpinnerLoader";
 
 export default function MyFoodsPage() {
   const { user } = useAuthStore();

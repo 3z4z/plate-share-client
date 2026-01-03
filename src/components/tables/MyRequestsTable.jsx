@@ -38,11 +38,7 @@ export default function MyRequestsTable({ myRequests }) {
               const { requestStatus, foodId } = request;
               const requestedFood = foods.find((food) => food._id === foodId);
               return (
-                <tr
-                  data-aos="fade-top"
-                  key={index}
-                  className="even:bg-base-200 *:py-1.5"
-                >
+                <tr key={index} className="even:bg-base-200 *:py-1.5">
                   <td className="font-bold ps-5">{index + 1 || "#"}</td>
                   <td>
                     <div className="flex gap-3 items-center">

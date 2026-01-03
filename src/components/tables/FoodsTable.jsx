@@ -40,11 +40,7 @@ export default function FoodsTable({ foods, isLoading }) {
                 food_status,
               } = food;
               return (
-                <tr
-                  data-aos="fade-top"
-                  key={index}
-                  className="even:bg-base-200 *:py-1.5"
-                >
+                <tr key={index} className="even:bg-base-200 *:py-1.5">
                   <td className="font-bold ps-5">
                     {isLoading ? (
                       <SpinnerLoader size={"loading-sm"} />
@@ -122,7 +118,7 @@ export default function FoodsTable({ foods, isLoading }) {
                           View
                         </Link>
                         <Link
-                          to={`/edit-food/${id}`}
+                          to={`/dashboard/edit-food/${id}`}
                           className="btn btn-secondary btn-sm rounded-full"
                         >
                           Edit

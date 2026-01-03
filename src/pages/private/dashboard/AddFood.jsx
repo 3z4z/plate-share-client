@@ -1,11 +1,11 @@
-import { useFoodsStore } from "../../stores/useFoodsStore";
-import CommonTitleComponent from "../../components/common/CommonTitle";
-import { useAuthStore } from "../../stores/useAuthStore";
+import { useFoodsStore } from "../../../stores/useFoodsStore";
+import CommonTitleComponent from "../../../components/common/CommonTitle";
+import { useAuthStore } from "../../../stores/useAuthStore";
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import useAxios from "../../hooks/useAxios";
-import FoodForm from "../../components/forms/FoodForm";
+import useAxios from "../../../hooks/useAxios";
+import FoodForm from "../../../components/forms/FoodForm";
 
 export default function AddFoodPage() {
   const { addNewFood } = useFoodsStore();

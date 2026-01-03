@@ -8,9 +8,11 @@ import {
   hotTostErrorConfig,
   hotTostSuccessConfig,
 } from "./configs/toastConfigs";
+import AppInit from "./AppInit";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <AppInit />
     <RouterProvider router={router} />
     <Toaster
       toastOptions={{
