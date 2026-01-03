@@ -4,22 +4,31 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import playStoreLogo from "../../assets/google-play.png";
 import appStoreLogo from "../../assets/app-store.png";
+import { Link } from "react-router";
 
 export default function FooterComponent() {
   const importantLinks = [
-    { title: "About Us", path: "#" },
-    { title: "Our Mission", path: "#" },
-    { title: "Blogs", path: "#" },
-    { title: "FAQ", path: "#" },
+    { title: "About Us", path: "/about-us" },
+    { title: "Our Mission", path: "/our-mission" },
+    { title: "Our Policies", path: "/our-policies" },
+    { title: "FAQ", path: "/faq" },
   ];
   const socialLinks = [
-    { title: "Facebook", path: "#", icon: <FaFacebook className="w-5 h-5" /> },
+    {
+      title: "Facebook",
+      path: "https://www.facebook.com/",
+      icon: <FaFacebook className="w-5 h-5" />,
+    },
     {
       title: "Instagram",
-      path: "#",
+      path: "https://www.instagram.com/",
       icon: <FaInstagram className="w-5 h-5" />,
     },
-    { title: "Twitter", path: "#", icon: <FaXTwitter className="w-5 h-5" /> },
+    {
+      title: "Twitter",
+      path: "https://www.x.com/",
+      icon: <FaXTwitter className="w-5 h-5" />,
+    },
   ];
   return (
     <footer className="mt-28 bg-base-300">
@@ -38,12 +47,12 @@ export default function FooterComponent() {
             <ul className="mt-8 flex flex-col gap-3">
               {importantLinks.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.path}
+                  <Link
+                    to={link.path}
                     className="transition hover:text-secondary border-b border-b-transparent hover:border-b-primary"
                   >
                     {link.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -55,6 +64,7 @@ export default function FooterComponent() {
                 <li key={index}>
                   <a
                     href={link.path}
+                    target="_blank"
                     className="flex items-center w-max gap-2 transition hover:text-secondary group"
                   >
                     {link.icon}
@@ -69,7 +79,11 @@ export default function FooterComponent() {
           <div className="lg:col-span-2">
             <h5 className="text-xl text-secondary">Get our App</h5>
             <div className="flex gap-3 mt-8">
-              <button className="btn btn-neutral h-auto py-2.5 px-3 gap-3 rounded-md">
+              <a
+                href="https://play.google.com/store/apps"
+                target="_blank"
+                className="btn btn-neutral h-auto py-2.5 px-3 gap-3 rounded-md"
+              >
                 <img
                   src={playStoreLogo}
                   alt=""
@@ -79,8 +93,12 @@ export default function FooterComponent() {
                   <span className="text-[8px] -mb-1">Get it on</span>
                   <span>Google Play</span>
                 </div>
-              </button>
-              <button className="btn btn-neutral h-auto py-2.5 px-3 gap-3 rounded-md">
+              </a>
+              <a
+                href="https://www.apple.com/app-store/"
+                target="_blank"
+                className="btn btn-neutral h-auto py-2.5 px-3 gap-3 rounded-md"
+              >
                 <img
                   src={appStoreLogo}
                   alt=""
@@ -90,7 +108,7 @@ export default function FooterComponent() {
                   <span className="text-[8px] -mb-1">Download from the</span>
                   <span>App Store</span>
                 </div>
-              </button>
+              </a>
             </div>
           </div>
         </div>

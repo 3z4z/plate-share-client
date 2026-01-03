@@ -50,7 +50,7 @@ export default function HowItWorksComponent() {
             <h4 className="mb-2 text-2xl group-hover:text-primary transition">
               {step.title}
             </h4>
-            <p className="text-gray-600 max-w-4/5">{step.description}</p>
+            <p className="text-base-content/70 max-w-4/5">{step.description}</p>
           </div>
         ))}
       </div>

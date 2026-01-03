@@ -12,6 +12,10 @@ import AddFoodPage from "../pages/private/AddFood";
 import MyFoodsPage from "../pages/private/MyFoods";
 import EditFoodPage from "../pages/private/EditFood";
 import MyRequestsPage from "../pages/private/MyRequests";
+import AboutPage from "../pages/About";
+import OurMissionPage from "../pages/OurMission";
+import OurPoliciesPage from "../pages/Policies";
+import FaqPage from "../pages/faq";
 export const router = createBrowserRouter([
   {
     path: "",
@@ -25,6 +29,22 @@ export const router = createBrowserRouter([
       {
         path: "foods",
         Component: FoodsPage,
+      },
+      {
+        path: "about-us",
+        Component: AboutPage,
+      },
+      {
+        path: "our-mission",
+        Component: OurMissionPage,
+      },
+      {
+        path: "our-policies",
+        Component: OurPoliciesPage,
+      },
+      {
+        path: "faq",
+        Component: FaqPage,
       },
       {
         path: "food/:id",

@@ -27,10 +27,10 @@ export default function OurMissionComponent() {
             <FaQuoteLeft className="absolute -top-14 -left-6 text-secondary/20 w-24 h-24" />
             <span className="relative z-2">{ourMission.title}</span>
           </h2>
-          <p className="md:w-4/5 text-gray-600 mb-7">
+          <p className="md:w-4/5 text-base-content/70 mb-7">
             {ourMission.description}
           </p>
-          <ul className="ms-5 list-disc text-gray-600">
+          <ul className="ms-5 list-disc text-base-content/70">
             {ourMission.keyPoints.map((point, index) => (
               <li key={index}>{point}</li>
             ))}

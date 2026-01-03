@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { container } from "../../utils/classNames";
 import NavbarComponent from "./Navbar";
 import BrandLogoComponent from "./BrandLogo";
@@ -19,6 +19,7 @@ export default function HeaderComponent() {
   const { user, isAuthLoading, signOut } = useAuthStore();
   const [themeState, setThemeState] = useState("light");
   const htmlElement = document.documentElement;
+  const { pathname } = useLocation();
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme) {
@@ -64,7 +65,9 @@ export default function HeaderComponent() {
   const [isDockOpen, setIsDockOpen] = useState(false);
 
   return (
-    <header className="bg-base-200 relative z-50 py-15">
+    <header
+      className={`${pathname === "/" && "bg-base-200 "}relative z-50 py-15`}
+    >
       <div className="w-full bg-base-200/0 rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[4.3px] border border-base-100/30 fixed py-3.25 top-0 left-0">
         <div
           className={`${container} md:w-full w-[calc(100%-1rem)]! py-5 flex items-center justify-between shadow-md rounded-full bg-base-100 border border-base-300/35`}
