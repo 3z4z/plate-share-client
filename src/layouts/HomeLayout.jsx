@@ -8,7 +8,9 @@ import "aos/dist/aos.css";
 import "../styles/swal.css";
 
 export default function HomeLayout() {
-  AOS.init();
+  AOS.init({
+    once: true,
+  });
   const { initAuthListener } = useAuthStore();
   useEffect(() => {
     const unsubscribe = initAuthListener();
