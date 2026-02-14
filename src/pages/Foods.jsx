@@ -33,13 +33,13 @@ export default function FoodsPage() {
         {user ? (
           <div className="flex gap-2">
             <Link
-              to={"/my-foods"}
+              to={"/dashboard/my-foods"}
               className="btn btn-primary px-6 rounded-full"
             >
               My Donations
             </Link>
             <Link
-              to={"/my-requests"}
+              to={"/dashboard/my-requests"}
               className="btn btn-secondary btn-soft px-6 rounded-full"
             >
               My Requests

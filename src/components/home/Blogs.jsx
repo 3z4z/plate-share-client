@@ -28,7 +28,7 @@ const blogs = [
 
 export default function BlogsComponent() {
   return (
-    <section>
+    <section className="mt-28">
       <CommonTitleComponent
         title={"From Our Blog"}
         subtitle={
