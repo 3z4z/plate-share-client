@@ -14,6 +14,10 @@ export default function UpdateProfileModal({ modalRef }) {
   const axios = useAxios();
   const { register, handleSubmit, reset } = useForm({
     mode: "all",
+    defaultValues: {
+      name: user?.displayName || "",
+      image: user?.photoURL || "",
+    },
   });
   useEffect(() => {
     if (!user) return;
@@ -29,7 +33,10 @@ export default function UpdateProfileModal({ modalRef }) {
     console.log(data);
     try {
       await updateUser(data.name, data.image);
-      await axios.patch(`/users/${user?.email}`);
+      await axios.patch(`/users/${user?.email}`, {
+        name: data.name,
+        image: data.image,
+      });
       toast.success("Success!", hotTostSuccessConfig);
     } catch (err) {
       toast.success(
